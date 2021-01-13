@@ -2,12 +2,12 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import Recette from './src/Screens/Recette'
+import RecetteItem from './src/Components/RecetteItem'
+
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Comme Faisait Grand-Mère !</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Recette/>
   );
 }
 
