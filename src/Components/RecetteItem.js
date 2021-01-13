@@ -57,26 +57,28 @@ const styles = StyleSheet.create({
     margin: 5,
     marginBottom: 40
   },
+
+
+  content_container: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   cadre_container: {
     borderWidth: 1,
     paddingBottom: Dimensions.get('window').width/2 * 0.6 *0.7,
-    padding: 10
+    padding: 4
   },
-  content_container: {
-    justifyContent: 'center',
-    alignItems: 'center',
+  image: {
+    width: Dimensions.get('window').width/2 * 0.6 ,
+    height: Dimensions.get('window').width/2 * 0.6,
+    borderRadius: Dimensions.get('window').width/2 * 0.6/ 2,
+    backgroundColor: 'gray',
+    marginTop: -Dimensions.get('window').width/2 * 0.6 *0.7
   },
+
+
   header_container: {
-
   },
-  description_container: {
-
-  },
-  ajouts_container: {
-    flexDirection: 'row',
-  },
-
-
   title_text: {
     fontSize: 20,
     fontWeight: 'bold',
@@ -88,7 +90,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 20,
     color: '#666666',
-    textAlign: 'center'
+    textAlign: 'center',
+  },
+
+
+  description_container: {
   },
   description_text: {
     fontStyle: 'italic',
@@ -103,14 +109,14 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 30,
     color: '#083f57',
-
   },
-  image: {
-    width: Dimensions.get('window').width/2 * 0.6 ,
-    height: Dimensions.get('window').width/2 * 0.6,
-    borderRadius: Dimensions.get('window').width/2 * 0.6/ 2,
-    backgroundColor: 'gray',
-    marginTop: -Dimensions.get('window').width/2 * 0.6 *0.7
+
+
+  ajouts_container: {
+    flexDirection: 'row',
+    paddingLeft: 10,
+    paddingRight: 10,
+    marginTop: -10
   },
   imagePanier: {
     width: 33,

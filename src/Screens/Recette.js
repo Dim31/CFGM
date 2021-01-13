@@ -1,5 +1,5 @@
-import React from 'react'
-import { StyleSheet, View, Button, TextInput, FlatList, Text, ActivityIndicator, Dimensions} from 'react-native'
+import React, {useState} from 'react'
+import { StyleSheet, View, Button, TextInput, FlatList, Text, ActivityIndicator, Dimensions, Picker} from 'react-native'
 import RecetteItem from '../Components/RecetteItem'
 
 
@@ -15,7 +15,6 @@ const formatData = (data, numColumns) => {
 };
 
 const numColumns = 2;
-
 
 class Recette extends React.Component {
   constructor(props) {
@@ -39,6 +38,7 @@ class Recette extends React.Component {
 
   }
 
+  // Rendu Items recettes
   renderItem = ({ item, index }) => {
     if (item.empty === true) {
       return <View style={[styles.item, styles.itemInvisible]} />;
@@ -53,11 +53,22 @@ class Recette extends React.Component {
 
   render() {
     return (
-      <View style ={styles.main_container}>
-        <TextInput onSubmitEditing={() => this._searchRecette()} onChangeText={(text) => this._searchTextInputChanged(text)}  style={[styles.textinput, { backgroundColor: 'lightgrey'}]} placeholder='Rechercher'/>
+      <View style={styles.main_container}>
+        <View style={styles.search_container} >
+          <TextInput onSubmitEditing={() => this._searchRecette()} onChangeText={(text) => this._searchTextInputChanged(text)}  style={[styles.textinput, { backgroundColor: 'lightgrey'}]} placeholder='Rechercher'/>
+
+          <Button
+            style={styles.buttonFilter}
+            title="Filtres"
+            color="#0c506a"
+            accessibilityLabel="Learn more about this purple button"
+          />
+        </View>
+
+
         <FlatList
           data={formatData(this.state.recettes, numColumns)}
-          style={styles.container}
+          style={styles.flatList_container}
           numColumns= {numColumns}
           renderItem={this.renderItem}
         />
@@ -72,32 +83,43 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 50
   },
-  textinput: {
-    marginLeft: 5,
-    marginRight: 5,
-    height: 50,
-    borderColor: '#000000',
-    borderWidth: 1,
-    paddingLeft: 5
+  search_container:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingLeft: 20,
+    paddingRight: 20,
+
+    paddingBottom: 10,
+    borderBottomWidth: 1,
+  },
+    textinput: {
+      marginLeft: 5,
+      marginRight: 5,
+      height: 45,
+      borderColor: '#000000',
+      borderWidth: 1,
+      paddingLeft: 5,
+      flex: 0.8,
+      borderRadius: 20
+    },
+    buttonFilter: {
+    },
+
+  flatList_container: {
+    flex: 1,
+    paddingTop: 10,
+    //marginVertical: 20,
+  },
+  item: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1
+    //height: Dimensions.get('window').width / numColumns, // approximate a square *
+  },
+  itemInvisible: {
+    backgroundColor: 'transparent',
   },
 
-  container: {
-      flex: 1,
-      marginVertical: 20,
-    },
-    item: {
-      alignItems: 'center',
-      justifyContent: 'center',
-      flex: 1,
-      margin: 1,
-      //height: Dimensions.get('window').width / numColumns, // approximate a square *
-    },
-    itemInvisible: {
-      backgroundColor: 'transparent',
-    },
-    itemText: {
-      color: '#fff',
-    }
 })
 
 export default Recette
