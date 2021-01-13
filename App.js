@@ -1,13 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet,View} from 'react-native';
+import Produits from './src/Screens/Produits';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Comme Faisait Grand-Mère !</Text>
-      <StatusBar style="auto" />
-    </View>
+      <View style={styles.container}>
+        <Produits></Produits>
+        <StatusBar style="auto" />
+      </View>
   );
 }
 
