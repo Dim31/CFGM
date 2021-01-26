@@ -50,14 +50,14 @@ var allWidth = Dimensions.get('window').width; //full width
 
 const styles = StyleSheet.create({
     conteneurDeListe: {
-        backgroundColor: '#666666',
         width: allWidth - 30,
         height: 200,
         marginTop: 20,
         marginLeft: 20,
         marginRight: 20,
         flexDirection: 'column',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        borderWidth: 1,
     },
     listeRecette: {
         flexDirection: 'row',
