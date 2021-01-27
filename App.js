@@ -7,20 +7,11 @@ import Compte from "./src/Screens/Compte";
 
 import Recette from './src/Screens/Recette'
 import RecetteItem from './src/Components/RecetteItem'
+import Accueil from "./src/Screens/Accueil";
 
 export default function App() {
   return (
-<<<<<<< HEAD
-    /*<View style={styles.container}>
-      <Text>Comme Faisait Grand-Mère !</Text>
-      <StatusBar style="auto" />
-    </View>*/
-      //<Connexion/>
-      <Aide/>
-      //<Compte/>
-=======
-    <Recette/>
->>>>>>> origin/valentin
+      <Accueil/>
   );
 }
 

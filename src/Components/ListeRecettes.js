@@ -28,8 +28,7 @@ export default class ListeRecettes extends React.Component {
         return (
             <View style={styles.conteneurDeListe}>
                 <Text> {this.props.titre} </Text>
-                <ScrollView
-                            style={styles.listeRecette}>
+                <ScrollView>
                     <FlatList
                         horizontal
                         showsHorizontalScrollIndicator={false}
@@ -58,9 +57,6 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         overflow: 'hidden',
         borderWidth: 1,
-    },
-    listeRecette: {
-        flexDirection: 'row',
     },
     recette: {
         height: 100,
