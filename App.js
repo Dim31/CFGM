@@ -1,26 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Connexion from "./src/Screens/Connexion";
+
+import Accueil from "./src/Screens/Accueil";
 import Aide from "./src/Screens/Aide";
 import Compte from "./src/Screens/Compte";
+import Connexion from "./src/Screens/Connexion";
+import Panier from "./src/Screens/Panier";
+import Produits from "./src/Screens/Produits";
+import Recette from "./src/Screens/Recette";
 
-import Recette from './src/Screens/Recette'
-import RecetteItem from './src/Components/RecetteItem'
+
 
 export default function App() {
   return (
-<<<<<<< HEAD
-    /*<View style={styles.container}>
-      <Text>Comme Faisait Grand-Mère !</Text>
-      <StatusBar style="auto" />
-    </View>*/
-      //<Connexion/>
-      <Aide/>
-      //<Compte/>
-=======
-    <Recette/>
->>>>>>> origin/valentin
+      <Accueil/>
   );
 }
 
