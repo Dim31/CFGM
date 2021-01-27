@@ -28,7 +28,7 @@ const DATA = [
     },
 ];
 
-export default class Accueil extends React.Component {
+export default class Panier extends React.Component {
 
     render() {
 
