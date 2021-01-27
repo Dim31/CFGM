@@ -1,4 +1,3 @@
-
 import {ScrollView, StyleSheet, View} from 'react-native'
 import ListeRecettes from "../Components/ListeRecettes";
 import React from 'react'
@@ -44,9 +43,3 @@ const styles = StyleSheet.create({
         backgroundColor: '#000000',
     },
 })
-
-
-export default class Accueil extends React.Component {
-
-
-}
