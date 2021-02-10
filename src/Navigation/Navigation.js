@@ -65,12 +65,20 @@ export default function App() {
          let iconName;
          if (route.name === 'Accueil') {
             iconName = focused
-            ? 'ios-information-circle'
-            : 'ios-information-circle-outline';
-          } else if (route.name === 'Recette') {
+            ? 'home-outline'
+            : 'home-outline';
+          } else if (route.name === 'Panier') {
             iconName = focused
-            ? 'ios-list-box'
-            : 'ios-list';
+            ? 'basket-outline'
+            : 'basket-outline';
+          } else if (route.name === 'Compte') {
+            iconName = focused
+            ? 'person-outline'
+            : 'person-outline';
+          } else if (route.name === 'Recherche') {
+            iconName = focused
+            ? 'search-outline'
+            : 'search-outline';
           }
 
      return <Ionicons name={iconName} size={size} color={color}     />;
