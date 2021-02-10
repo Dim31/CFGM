@@ -18,7 +18,7 @@ class RecetteItem extends React.Component {
             </View>
 
             <View style={styles.description_container}>
-              <Text style={styles.description_text} numberOfLine={6}>Ajoutez le mélange chocolat/beurre. Mélangez bien. Beurrez et farinez votre moule puis y versez la pâte à gâteau ...</Text>
+              <Text style={styles.description_text} numberOfLines={2}>Ajoutez le mélange chocolat/beurre. Mélangez bien. Beurrez et farinez votre moule puis y versez la pâte à gâteau ...</Text>
               <Text style={styles.plus_text}>En savoir plus</Text>
             </View>
           </View>

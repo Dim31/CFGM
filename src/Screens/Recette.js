@@ -16,6 +16,7 @@ const formatData = (data, numColumns) => {
 
 const numColumns = 2;
 
+
 class Recette extends React.Component {
     constructor(props) {
         super(props)
@@ -54,17 +55,6 @@ class Recette extends React.Component {
     render() {
         return (
             <View style={styles.main_container}>
-                <View style={styles.search_container} >
-                    <TextInput onSubmitEditing={() => this._searchRecette()} onChangeText={(text) => this._searchTextInputChanged(text)}  style={[styles.textinput, { backgroundColor: 'lightgrey'}]} placeholder='Rechercher'/>
-
-                    <Button
-                        style={styles.buttonFilter}
-                        title="Filtres"
-                        color="#0c506a"
-                        accessibilityLabel="Learn more about this purple button"
-                    />
-                </View>
-
 
                 <FlatList
                     data={formatData(this.state.recettes, numColumns)}
@@ -81,7 +71,6 @@ class Recette extends React.Component {
 const styles = StyleSheet.create({
   main_container: {
     flex: 1,
-    marginTop: 10
   },
   search_container:{
     flexDirection: 'row',
