@@ -1,23 +1,44 @@
+import {ScrollView, StyleSheet, View} from 'react-native'
+import ListeRecettes from "../Components/ListeRecettes";
 import React from 'react'
-import { StyleSheet, View, Button, TextInput, FlatList, Text, ActivityIndicator, TouchableOpacity} from 'react-native'
+import EnTete from "../Components/EnTete";
 
 
-export default class Accueil extends React.Component {
-  _goToRecettePage() {
-    this.props.navigation.navigate("Recette")
-  }
 
-  render() {
-    return (
-      <View>
-      <TouchableOpacity   onPress={() => this._goToRecettePage()}>
-        <View>
-          <View>
-            <Text style={[{ marginTop: 50}]}>Aller vers recette</Text>
-          </View>
-        </View>
-      </TouchableOpacity>
-      </View>
-    )
-  }
+    render() {
+
+        return (
+            <View style={styles.mainConteneur}>
+
+                <EnTete></EnTete>
+
+                <ScrollView style={styles.CategorieDeListe}>
+                    <ListeRecettes titre='Mes recettes'/>
+
+                    <ListeRecettes titre='Coups de coeurs'/>
+
+                    <ListeRecettes titre='Nouvelles recettes'/>
+
+                    <ListeRecettes titre='Promotion'/>
+                </ScrollView>
+
+                <View style={styles.BarreDeNavigation}/>
+
+            </View>
+
+        )
+    }
 }
+
+
+const styles = StyleSheet.create({
+    mainConteneur: {
+        flexDirection: 'column',
+        flex: 1,
+    },
+
+    BarreDeNavigation: {
+        height: 80,
+        backgroundColor: '#000000',
+    },
+})
