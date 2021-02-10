@@ -81,7 +81,7 @@ class Recette extends React.Component {
 const styles = StyleSheet.create({
   main_container: {
     flex: 1,
-    marginTop: 50
+    marginTop: 10
   },
   search_container:{
     flexDirection: 'row',
