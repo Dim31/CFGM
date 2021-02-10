@@ -2,7 +2,7 @@ import React from 'react'
 import {Dimensions, Image, StyleSheet, Text, View} from 'react-native'
 
 
-export default class DetailsRecettePanier extends React.Component {
+export default class RecettePanier extends React.Component {
 
     render() {
         return (
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     formQuantite: {
-        flexDirection: 'row',
+      flexDirection: 'row',
     },
     conteneurBas: {
         alignSelf: 'center'

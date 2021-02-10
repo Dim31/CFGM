@@ -1,7 +1,8 @@
 import {Dimensions, FlatList, StyleSheet, Text, View} from 'react-native'
 import React from 'react'
-import DetailsRecettePanier from "../Components/DetailsRecettePanier";
+import RecettePanier from "../Components/RecettePanier";
 import EnTete from "../Components/EnTete";
+import BarreDeNavigation from "../Components/BarreDeNavigation";
 
 
 const DATA = [
@@ -42,9 +43,9 @@ export default class Panier extends React.Component {
                         showsHorizontalScrollIndicator={false}
                         data={DATA}
                         keyExtractor={(item) => item.id.toString()}
-                        renderItem={({item}) => <DetailsRecettePanier style={styles.recette} titre={item.titre}
-                                                                      imgurl={item.imgurl} prix={item.prix}
-                                                                      quantite={item.quantite}/>}
+                        renderItem={({item}) => <RecettePanier style={styles.recette} titre={item.titre}
+                                                               imgurl={item.imgurl} prix={item.prix}
+                                                               quantite={item.quantite}/>}
                     />
 
                 </View>
@@ -70,7 +71,7 @@ export default class Panier extends React.Component {
                     </View>
                 </View>
 
-
+                <BarreDeNavigation/>
 
             </View>
 
@@ -119,10 +120,10 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
 
     },
-    codeReduction:{
+    codeReduction: {
         flexDirection: 'row',
     },
-    textCodeReduction:{
+    textCodeReduction: {
         borderColor: '#000000',
         borderWidth: 1,
         paddingTop: 3,

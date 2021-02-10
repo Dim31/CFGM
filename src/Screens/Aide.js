@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native"
 import { ButtonGroup } from "react-native-elements";
+import BarreDeNavigation from "../Components/BarreDeNavigation";
 
 class Aide extends React.Component {
     state = {
