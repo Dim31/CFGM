@@ -1,8 +1,10 @@
-import {FlatList, StyleSheet, View} from 'react-native'
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import ListeRecettes from "../Components/ListeRecettes";
 import React from 'react'
 import EnTete from "../Components/EnTete";
 import BarreDeNavigation from "../Components/BarreDeNavigation";
+
+
 
 const DATA = [
     {
@@ -21,22 +23,25 @@ const DATA = [
 
 export default class Accueil extends React.Component {
 
+
     render() {
 
         return (
+
             <View style={styles.mainConteneur}>
 
                 <EnTete></EnTete>
 
 
+
                 <FlatList data={DATA}
                           keyExtractor={(item) => item.id.toString()}
-                          renderItem={({item}) => <ListeRecettes categorie={item.categorie}/> }
+                          renderItem={({item}) => <ListeRecettes categorie={item.categorie}/>}
                 />
-
 
                 <BarreDeNavigation/>
             </View>
+
 
         )
     }

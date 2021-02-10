@@ -1,5 +1,5 @@
-import React from 'react'
-import {Button, FlatList, StyleSheet, TextInput, View} from 'react-native'
+import React, {useState} from 'react'
+import { StyleSheet, View, Button, TextInput, FlatList, Text, ActivityIndicator, Dimensions, Picker} from 'react-native'
 import RecetteItem from '../Components/RecetteItem'
 
 
@@ -8,7 +8,7 @@ const formatData = (data, numColumns) => {
 
     let numberOfElementsLastRow = data.length - (numberOfFullRows * numColumns);
     while (numberOfElementsLastRow !== numColumns && numberOfElementsLastRow !== 0) {
-        data.push({key: `blank-${numberOfElementsLastRow}`, empty: true});
+        data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true });
         numberOfElementsLastRow++;
     }
     return data;
@@ -22,7 +22,7 @@ class Recette extends React.Component {
         this.page = 0
         this.totalPages = 0
         this.state = {
-            recettes: [{key: 'A'}, {key: 'B'}, {key: 'C'}, {key: 'D'}, {key: 'E'}, {key: 'F'}, {key: 'G'}, {key: 'H'}, {key: 'I'}],
+            recettes: [{ key: 'A' }, { key: 'B' }, { key: 'C' }, { key: 'D' }, { key: 'E' }, { key: 'F' }, { key: 'G' }, { key: 'H' }, { key: 'I' }],
             isLoading: false
         }
         this.searchedText = ""
@@ -39,13 +39,13 @@ class Recette extends React.Component {
     }
 
     // Rendu Items recettes
-    renderItem = ({item, index}) => {
+    renderItem = ({ item, index }) => {
         if (item.empty === true) {
-            return <View style={[styles.item, styles.itemInvisible]}/>;
+            return <View style={[styles.item, styles.itemInvisible]} />;
         }
         return (
-            <View style={styles.item}>
-                <RecetteItem recette={item}/>
+            <View style={styles.item} >
+                <RecetteItem recette={item}  />
             </View>
         );
     };
@@ -54,10 +54,8 @@ class Recette extends React.Component {
     render() {
         return (
             <View style={styles.main_container}>
-                <View style={styles.search_container}>
-                    <TextInput onSubmitEditing={() => this._searchRecette()}
-                               onChangeText={(text) => this._searchTextInputChanged(text)}
-                               style={[styles.textinput, {backgroundColor: 'lightgrey'}]} placeholder='Rechercher'/>
+                <View style={styles.search_container} >
+                    <TextInput onSubmitEditing={() => this._searchRecette()} onChangeText={(text) => this._searchTextInputChanged(text)}  style={[styles.textinput, { backgroundColor: 'lightgrey'}]} placeholder='Rechercher'/>
 
                     <Button
                         style={styles.buttonFilter}
@@ -71,7 +69,7 @@ class Recette extends React.Component {
                 <FlatList
                     data={formatData(this.state.recettes, numColumns)}
                     style={styles.flatList_container}
-                    numColumns={numColumns}
+                    numColumns= {numColumns}
                     renderItem={this.renderItem}
                 />
             </View>
@@ -85,7 +83,7 @@ const styles = StyleSheet.create({
         flex: 1,
         marginTop: 50
     },
-    search_container: {
+    search_container:{
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingLeft: 20,
@@ -104,7 +102,8 @@ const styles = StyleSheet.create({
         flex: 0.8,
         borderRadius: 20
     },
-    buttonFilter: {},
+    buttonFilter: {
+    },
 
     flatList_container: {
         flex: 1,
