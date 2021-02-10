@@ -9,7 +9,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import Accueil from '../Screens/Accueil'
 import Panier from '../Screens/Panier'
-import Profil from '../Screens/Compte'
+import Compte from '../Screens/Compte'
 import Recherche from '../Screens/Recherche'
 
 
@@ -28,7 +28,7 @@ const PanierStack = createStackNavigator();
 function PanierStackScreen() {
  return (
    <PanierStack.Navigator>
-      <PanierStack.Screen name="Recette" component={Recette} />
+      <PanierStack.Screen name="Panier" component={Panier} />
    </PanierStack.Navigator>
   );
 }
@@ -47,11 +47,9 @@ function CompteStackScreen() {
 const RechercheStack = createStackNavigator();
 function RechercheStackScreen() {
   return (
-    <RecetteStack.Navigator>
-      <RecetteStack.Screen name="Recherche" component={Recherche} />
-      <RecetteStack.Screen name="Recette" component={Recette} />
-      <RecetteStack.Screen name="Produit" component={Produit} />
-    </RecetteStack.Navigator>
+    <RechercheStack.Navigator>
+      <RechercheStack.Screen name="Recherche" component={Recherche} />
+    </RechercheStack.Navigator>
   );
 }
 

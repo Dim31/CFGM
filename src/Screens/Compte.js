@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { ButtonGroup, Avatar } from "react-native-elements";
 
 class Compte extends React.Component {
@@ -10,12 +10,10 @@ class Compte extends React.Component {
         this.setState({index})
     }
 
-
     render() {
         const { selectedIndex } = this.state
         return (
             <View style={styles.main_container}>
-                <View style={styles.first_container}></View>
                 <View style={styles.second_container}>
                     <View style={styles.icon_container}>
                         <Avatar
@@ -27,7 +25,6 @@ class Compte extends React.Component {
                             }}
                         />
                     </View>
-
                     <View style={styles.menu_container}>
                         <TouchableOpacity>
                             <Text style={styles.text_menu}> Mes commandes </Text>
@@ -42,17 +39,9 @@ class Compte extends React.Component {
                             <Text style={styles.text_menu}> Paramètres </Text>
                         </TouchableOpacity>
                     </View>
+                </View>
 
-                </View>
-                <View style={styles.third_container}>
-                    <ButtonGroup
-                        onPress={this.updateIndex}
-                        selectedIndex={selectedIndex}
-                        buttons={['Accueil', 'Panier', 'Compte', '?']}
-                        containerStyle={{height: 60, marginLeft: 0, marginRight: 0, marginTop: 0, marginBottom: 0, backgroundColor: '#FC9F4D'}} />
-                </View>
             </View>
-
         )
     }
 }
@@ -68,11 +57,13 @@ const styles = StyleSheet.create({
         //backgroundColor: 'blue',
         justifyContent: 'center',
         alignItems: 'center',
+
     },
     second_container: {
         flex: 8,
         //backgroundColor: 'red',
         justifyContent: 'center',
+        
     },
     third_container: {
         flex: 1,
@@ -83,8 +74,8 @@ const styles = StyleSheet.create({
     text_menu: {
         fontSize: 20,
         marginTop: 10,
-        borderBottomWidth: 2,
-        borderTopWidth: 2,
+        borderBottomWidth: 1,
+        borderTopWidth: 1,
         padding: 20,
     },
     icon_container: {
