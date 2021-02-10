@@ -27,21 +27,13 @@ export default class Accueil extends React.Component {
 
             <View style={styles.mainConteneur}>
                 <EnTete></EnTete>
-
-
-
                 <FlatList data={DATA}
                           keyExtractor={(item) => item.id.toString()}
                           renderItem={({item}) => <ListeRecettes categorie={item.categorie}/>}
                 />
-
-                <BarreDeNavigation/>
             </View>
-
-
         )
     }
-
 }
 
 
