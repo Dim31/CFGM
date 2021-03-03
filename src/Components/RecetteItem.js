@@ -1,19 +1,23 @@
 import React from 'react'
 import { StyleSheet, View, Text, Image, TouchableOpacity , Button, Dimensions} from 'react-native'
 
+
 class RecetteItem extends React.Component {
   render() {
-    const { recette, afficherDetailRecette } = this.props
+    const { recette, afficherDetailsRecette } = this.props
+    console.log("L id du recette est : "+recette.id);
+    console.log("L key du recette est : "+recette.key);
     return (
       <View style = {styles.main_container}>
         <TouchableOpacity
-        onPress = {() => afficherDetailRecette(recette.id)}
+
+        onPress = {() => afficherDetailsRecette(recette.id)}
+        //onPress = {() => afficherDetailsRecette(recette.id)}
         style = {styles.content_container}
         >
           <View style={styles.cadre_container}>
-
             <View style={styles.header_container}>
-              <Text style={styles.title_text}>Gâteau au chocolat fondant rapide</Text>
+              <Text style={styles.title_text}>Gâteau au chocolat fondant rapide {recette.id}</Text>
               <Text style={styles.price_text}>8 €</Text>
             </View>
 
@@ -32,15 +36,15 @@ class RecetteItem extends React.Component {
         <View style={styles.ajouts_container}>
           <TouchableOpacity onPress={()=>this._ajoutRecettePanier()}>
             <Image
-              style={styles.imagePanier}
-              source={{uri: 'https://image.flaticon.com/icons/png/512/126/126510.png'}}
-            />
-          </TouchableOpacity>
-          <Text style={styles.pute_text}></Text>
-          <TouchableOpacity onPress={()=>this._ajoutRecetteFavoris()}>
-            <Image
               style={styles.imageCoeur}
               source={{uri: 'https://img.icons8.com/ios/452/hearts--v1.png'}}
+            />
+          </TouchableOpacity>
+          <Text style={styles.text_text}></Text>
+          <TouchableOpacity onPress={()=>this._ajoutRecetteFavoris()}>
+            <Image
+              style={styles.imagePanier}
+              source={{uri: 'https://image.flaticon.com/icons/png/512/126/126510.png'}}
             />
           </TouchableOpacity>
         </View>
@@ -50,6 +54,7 @@ class RecetteItem extends React.Component {
 
 }
 
+const widthAddIcons = 33;
 const styles = StyleSheet.create({
   main_container: {
     justifyContent: 'center',
@@ -57,8 +62,6 @@ const styles = StyleSheet.create({
     margin: 5,
     marginBottom: 40
   },
-
-
   content_container: {
     justifyContent: 'center',
     alignItems: 'center'
@@ -101,8 +104,8 @@ const styles = StyleSheet.create({
     color: '#666666',
     fontSize: 12,
     textAlign: 'center',
-    marginTop: 20,
-    marginBottom: 10
+    marginTop: 8,
+    marginBottom: 5
   },
   plus_text: {
     textAlign: 'center',
@@ -119,16 +122,15 @@ const styles = StyleSheet.create({
     marginTop: -10
   },
   imagePanier: {
-    width: 33,
-    height: 33,
-    marginLeft: 0
+    width: widthAddIcons,
+    height: widthAddIcons,
+
   },
   imageCoeur: {
-    width: 33,
-    height: 33,
-    marginRight: 0
+    width: widthAddIcons,
+    height: widthAddIcons,
   },
-  pute_text: {
+  text_text: {
     flex: 1
   }
 })

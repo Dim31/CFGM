@@ -29,7 +29,21 @@ class Produit extends React.Component {
     return(
       <View style={{marginTop:20}}>
         <ScrollView>
+          <View style={styles.top}>
+            <SearchBar
+              placeholder="Recherchez..."
+              onChangeText={this.updateState}
+              value={search}
+              containerStyle={styles.searchBarBox}
+              inputContainerStyle={styles.searchBar}
+            />
+            <Button
+              title="Filtres"
+              type="outline"
+              buttonStyle={styles.bouton}
+            />
 
+          </View>
           <View style={styles.container}>
             <FlatList
               data={data}

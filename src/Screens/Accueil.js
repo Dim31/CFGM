@@ -1,4 +1,4 @@
-import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import {FlatList, StyleSheet, Text, TouchableOpacity, View, StatusBar} from 'react-native'
 import ListeRecettes from "../Components/ListeRecettes";
 import React from 'react'
 import EnTete from "../Components/EnTete";
@@ -26,6 +26,13 @@ export default class Accueil extends React.Component {
         return (
 
             <View style={styles.mainConteneur}>
+                <StatusBar
+                  animated={true}
+                  backgroundColor="white"
+                  barStyle='dark-content'
+                  showHideTransition='fade'
+                  hidden= {false}
+                />
                 <EnTete></EnTete>
                 <FlatList data={DATA}
                           keyExtractor={(item) => item.id.toString()}

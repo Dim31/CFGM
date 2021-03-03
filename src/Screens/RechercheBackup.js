@@ -1,12 +1,13 @@
 import React, {useState} from 'react'
 import { StyleSheet, View, Button, TextInput, FlatList, Text, ActivityIndicator, Dimensions, Picker} from 'react-native'
 import RecetteItem from '../Components/RecetteItem'
-import { withNavigation } from 'react-navigation';
 
+import NavigationRecherche from '../Navigation/NavigationRecherche'
 
 
 const formatData = (data, numColumns) => {
     const numberOfFullRows = Math.floor(data.length / numColumns);
+
     let numberOfElementsLastRow = data.length - (numberOfFullRows * numColumns);
     while (numberOfElementsLastRow !== numColumns && numberOfElementsLastRow !== 0) {
         data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true });
@@ -18,13 +19,13 @@ const formatData = (data, numColumns) => {
 const numColumns = 2;
 
 
-class Recette extends React.Component {
+class Recherche extends React.Component {
     constructor(props) {
         super(props)
         this.page = 0
         this.totalPages = 0
         this.state = {
-            recettes: [{ key: 'A', id: 1}, { key: 'B', id: 2 }, { key: 'C' , id: 3}, { key: 'D' , id: 4}, { key: 'E' , id: 5}, { key: 'F' , id: 6}, { key: 'G' , id: 7}, { key: 'H' , id: 8}, { key: 'I' , id: 9}],
+            recettes: [{ key: 'A' }, { key: 'B' }, { key: 'C' }, { key: 'D' }, { key: 'E' }, { key: 'F' }, { key: 'G' }, { key: 'H' }, { key: 'I' }],
             isLoading: false
         }
         this.searchedText = ""
@@ -40,10 +41,6 @@ class Recette extends React.Component {
 
     }
 
-    _afficherDetailsRecette = (idRecette) => {
-      this.props.navigation.navigate("RecetteDetails", {idRecette: idRecette})
-    }
-
     // Rendu Items recettes
     renderItem = ({ item, index }) => {
         if (item.empty === true) {
@@ -51,7 +48,7 @@ class Recette extends React.Component {
         }
         return (
             <View style={styles.item} >
-                <RecetteItem recette={item} afficherDetailsRecette={this._afficherDetailsRecette} />
+                <RecetteItem recette={item}  />
             </View>
         );
     };
@@ -60,12 +57,17 @@ class Recette extends React.Component {
     render() {
         return (
             <View style={styles.main_container}>
-                <FlatList
-                    data={formatData(this.state.recettes, numColumns)}
-                    style={styles.flatList_container}
-                    numColumns= {numColumns}
-                    renderItem={this.renderItem}
-                />
+                <View style={styles.search_container} >
+                    <TextInput onSubmitEditing={() => this._searchRecette()} onChangeText={(text) => this._searchTextInputChanged(text)}  style={[styles.textinput, { backgroundColor: 'lightgrey'}]} placeholder='Rechercher'/>
+                    <Button
+                        style={styles.buttonFilter}
+                        title="Filtres"
+                        color="#0c506a"
+                        accessibilityLabel="Learn more about this purple button"
+                    />
+                </View>
+
+                <NavigationRecherche/>
             </View>
         )
     }
@@ -74,7 +76,7 @@ class Recette extends React.Component {
 
 const styles = StyleSheet.create({
   main_container: {
-    flex: 1,
+    flex: 1
   },
   search_container:{
     flexDirection: 'row',
@@ -83,7 +85,11 @@ const styles = StyleSheet.create({
     paddingRight: 20,
 
     paddingBottom: 10,
-    borderBottomWidth: 1,
+    paddingTop: 20,
+    // borderBottomWidth: 1,
+    borderTopWidth: 2,
+    borderColor: '#817975',
+    backgroundColor: '#d4ccc0',
   },
     textinput: {
         marginLeft: 5,
@@ -111,8 +117,7 @@ const styles = StyleSheet.create({
     },
     itemInvisible: {
         backgroundColor: 'transparent',
-    },
-
+    }
 })
 
-export default Recette
+export default Recherche
