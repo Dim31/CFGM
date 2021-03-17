@@ -114,7 +114,7 @@ class RecetteDetails extends React.Component {
               <Text style={styles.text_text}></Text>
               <Text>10,00€</Text>
             </View>
-            <Text style={styles.description_text}>Ajoutez le mélange chocolat/beurre. Mélangez bien. Beurrez et farinez votre moule puis y versez la pâte à gâteau ...</Text>
+            <Text style={styles.description_text}>C'est l'heure du goûter les enfants !</Text>
           </View>
 
 
@@ -151,16 +151,19 @@ class RecetteDetails extends React.Component {
             onError={this.onError} // nécéssaire ?
             useNativeControls
           />
-
           <View style={styles.infosUtiles_container}>
-            <Text style={ styles.infosUtiles_text}>Personnes</Text>
-            <Text style={ styles.infosUtiles_text}>Temps</Text>
-            <Text style={ styles.infosUtiles_text}>Ustensiles</Text>
-          </View>
-          <View style={styles.infosUtiles_container}>
-            <Text style={ styles.infosUtiles_text}>2</Text>
-            <Text style={ styles.infosUtiles_text}>20 minutes</Text>
-            <Text style={ styles.infosUtiles_text}>O V C</Text>
+            <View style={styles.infosUtiles_item}>
+              <Text style={ styles.infosUtiles_titres}>Personnes</Text>
+              <Text style={ styles.infosUtiles_text}>2</Text>
+            </View>
+            <View style={styles.infosUtiles_item}>
+              <Text style={ styles.infosUtiles_titres}>Temps</Text>
+              <Text style={ styles.infosUtiles_text}>20 min</Text>
+            </View>
+            <View style={styles.infosUtiles_item}>
+              <Text style={ styles.infosUtiles_titres}>Ustensiles</Text>
+              <Text style={ styles.infosUtiles_text}>O V C</Text>
+            </View>
           </View>
 
           <FlatList
@@ -283,7 +286,7 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     color: '#666666',
     marginTop: 15,
-    textAlign: 'justify',
+    textAlign: 'center',
   },
   default_text: {
     marginLeft: 5,
@@ -330,15 +333,26 @@ const styles = StyleSheet.create({
   infosUtiles_container: {
     flexDirection: 'row',
     flex: 1,
-
+    paddingRight: 50,
+    paddingLeft: 50,
+    justifyContent: 'space-between',
   },
-  infosUtiles_container: {
-    flexDirection: 'row',
-    flex: 1,
+  infosUtiles_item: {
+    textAlign: 'center',
+  },
+  infosUtiles_titres: {
+    textAlign: 'center',
+    marginBottom: 8,
   },
   infosUtiles_text: {
     textAlign: 'center',
-    flex: 1
+    borderRadius: 10,
+    padding: 5,
+    paddingRight: 10,
+    paddingLeft: 10,
+    backgroundColor: '#F0955F',
+    color: '#FFFFFF',
+    overflow:'hidden',alignSelf: 'center'
   },
 
 
@@ -367,7 +381,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     marginTop: 25,
     marginBottom: 15,
-    color: '#000000',
+    color: '#F0955F',
     textAlign: 'center'
   }
 })

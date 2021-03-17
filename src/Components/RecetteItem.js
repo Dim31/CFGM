@@ -57,41 +57,57 @@ class RecetteItem extends React.Component {
 const widthAddIcons = 33;
 const styles = StyleSheet.create({
   main_container: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
     margin: 5,
-    marginBottom: 40
+    marginBottom: 40,
+
+    borderRadius:  20,
+    backgroundColor: '#45add9',
+    backgroundColor: '#FFFFFF',
+    shadowColor: "#000",
+    shadowOffset: {
+    	width: 0,
+    	height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
   content_container: {
     justifyContent: 'center',
     alignItems: 'center'
   },
   cadre_container: {
-    borderWidth: 1,
+    borderWidth: 0,
+    borderRadius: 20,
     paddingBottom: Dimensions.get('window').width/2 * 0.6 *0.7,
-    padding: 4
+    padding: 10,
+    backgroundColor: '#F1D397',
   },
   image: {
     width: Dimensions.get('window').width/2 * 0.6 ,
     height: Dimensions.get('window').width/2 * 0.6,
     borderRadius: Dimensions.get('window').width/2 * 0.6/ 2,
     backgroundColor: 'gray',
-    marginTop: -Dimensions.get('window').width/2 * 0.6 *0.7
+    marginTop: -Dimensions.get('window').width/2 * 0.6 *0.7,
+    borderWidth: 1,
   },
 
 
   header_container: {
   },
   title_text: {
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginTop: 20,
-    marginBottom: 10
+    marginTop: 10,
+    marginBottom: 10,
   },
   price_text: {
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 15,
     color: '#666666',
     textAlign: 'center',
   },
@@ -104,14 +120,15 @@ const styles = StyleSheet.create({
     color: '#666666',
     fontSize: 12,
     textAlign: 'center',
-    marginTop: 8,
+    marginTop: 10,
     marginBottom: 5
   },
   plus_text: {
     textAlign: 'center',
     marginTop: 10,
-    marginBottom: 30,
+    marginBottom: 15,
     color: '#083f57',
+    color : '#F0955F',
   },
 
 
@@ -119,12 +136,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingLeft: 10,
     paddingRight: 10,
+    padding: 15,
     marginTop: -10
   },
   imagePanier: {
     width: widthAddIcons,
     height: widthAddIcons,
-
   },
   imageCoeur: {
     width: widthAddIcons,
