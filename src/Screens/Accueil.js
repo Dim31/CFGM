@@ -1,23 +1,26 @@
-import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import {FlatList, StyleSheet, View} from 'react-native'
 import ListeRecettes from "../Components/ListeRecettes";
 import React from 'react'
 import EnTete from "../Components/EnTete";
 import BarreDeNavigation from "../Components/BarreDeNavigation";
 
 
-
 const DATA = [
     {
         id: 51431543,
-        categorie: 'Les Promos',
+        titre: 'Découverte',
+        option: 'random'
     },
     {
         id: 5123524,
-        categorie: 'Recettes de saison',
+        titre: 'Recettes Végétarienne',
+        option: 'Vegetarian'
+
     },
     {
         id: 2354326,
-        categorie: '',
+        titre: 'Breakfast',
+        option: 'Breakfast'
     },
 ];
 
@@ -34,11 +37,12 @@ export default class Accueil extends React.Component {
                 <EnTete></EnTete>
 
 
-
                 <FlatList data={DATA}
                           keyExtractor={(item) => item.id.toString()}
-                          renderItem={({item}) => <ListeRecettes categorie={item.categorie}/>}
+                          renderItem={({item}) =>
+                              <ListeRecettes item={item}/>}
                 />
+
 
                 <BarreDeNavigation/>
             </View>
@@ -50,14 +54,16 @@ export default class Accueil extends React.Component {
 }
 
 
-const styles = StyleSheet.create({
-    mainConteneur: {
-        flexDirection: 'column',
-        flex: 1,
-    },
+const styles = StyleSheet.create(
+    {
+        mainConteneur: {
+            flexDirection: 'column',
+            flex: 1,
+        },
 
-    BarreDeNavigation: {
-        height: 80,
-        backgroundColor: '#000000',
-    },
-})
+        BarreDeNavigation: {
+            height: 80,
+            backgroundColor: '#000000',
+        },
+    }
+)
