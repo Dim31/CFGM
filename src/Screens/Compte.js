@@ -1,6 +1,8 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import {View, Text, StyleSheet, TouchableOpacity, ImageBackground} from 'react-native'
 import { ButtonGroup, Avatar } from "react-native-elements";
+import pattern2_travers from "../image/Patern2_travers.png";
+import en_tete from "../image/en-tete.png";
 
 class Compte extends React.Component {
     state = {
@@ -14,8 +16,13 @@ class Compte extends React.Component {
         const { selectedIndex } = this.state
         return (
             <View style={styles.main_container}>
-                <View style={styles.second_container}>
-                    <View style={styles.icon_container}>
+                <ImageBackground source={pattern2_travers} style={styles.patternStyle}>
+                    {/*En-tete*/}
+                    <View style={styles.enTeteView}>
+                        <ImageBackground source={en_tete} style={styles.enTeteStyle}/>
+                    </View>
+                    {/*Avatar*/}
+                    <View style={styles.avatarView}>
                         <Avatar
                             size={120}
                             rounded
@@ -25,22 +32,11 @@ class Compte extends React.Component {
                             }}
                         />
                     </View>
-                    <View style={styles.menu_container}>
-                        <TouchableOpacity>
-                            <Text style={styles.text_menu}> Mes commandes </Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <Text style={styles.text_menu}> Moyen de paiement </Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <Text style={styles.text_menu}> Préférences </Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <Text style={styles.text_menu}> Paramètres </Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
+                    {/*Contenu*/}
+                    <View style={styles.contenuView}>
 
+                    </View>
+                </ImageBackground>
             </View>
         )
     }
@@ -52,41 +48,30 @@ const styles = StyleSheet.create({
         //backgroundColor: 'yellow',
         marginTop: 30,
     },
-    first_container: {
-        flex: 2.5,
-        //backgroundColor: 'blue',
-        justifyContent: 'center',
-        alignItems: 'center',
+    patternStyle: {
+        resizeMode: 'stretch',
+        height: '115%',
+        width: '100%',
+    },
+    enTeteStyle: {
+        resizeMode: 'stretch',
+        height: '100%',
+        width: '100%',
+    },
+    enTeteView: {
+        //backgroundColor: 'pink',
+        flex: 1,
 
     },
-    second_container: {
-        flex: 8,
-        //backgroundColor: 'red',
+    avatarView: {
+        //backgroundColor: 'purple',
+        flex: 1.5,
+        alignItems: 'center',
         justifyContent: 'center',
-        
     },
-    third_container: {
-        flex: 1,
+    contenuView: {
         //backgroundColor: 'green',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    text_menu: {
-        fontSize: 20,
-        marginTop: 10,
-        borderBottomWidth: 1,
-        borderTopWidth: 1,
-        padding: 20,
-    },
-    icon_container: {
-        flex: 1,
-        //backgroundColor: '#954DFC',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    menu_container: {
-        flex: 2,
-        //backgroundColor: '#FC4DF1',
+        flex: 5,
     }
 })
 

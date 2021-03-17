@@ -6,10 +6,14 @@ import React from 'react';
 // import RecetteItem from './src/Components/RecetteItem'
 // import Accueil from './src/Screens/Accueil'
 import Navigation from './src/Navigation/Navigation'
+import Connexion from "./src/Screens/Connexion";
+import Compte from "./src/Screens/Compte";
 
 export default function App() {
   return (
-    <Navigation/>
+      //<Navigation/>
+      <Connexion/>
+      //<Compte/>
   );
 }
 

@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
-import { StyleSheet, View, Button, TextInput, FlatList, Text, ActivityIndicator, Dimensions, Picker} from 'react-native'
+import { StyleSheet, View, Button, TextInput, FlatList, Modal, Pressable, Text, Alert, ActivityIndicator, Dimensions, Picker} from 'react-native'
 import RecetteItem from '../Components/RecetteItem'
+import Filtres from "../Components/Filtres";
 
 
 const formatData = (data, numColumns) => {
@@ -28,6 +29,14 @@ class Rechercher extends React.Component {
     this.searchedText = ""
   }
 
+  //Visibilité modal pour le filtre
+  state = {
+    modalVisible: false
+  }
+
+  setModalVisible = (visible) => {
+    this.setState({ modalVisible: visible });
+  }
 
   _searchTextInputChanged(text) {
     this.searchedText = text
@@ -52,17 +61,45 @@ class Rechercher extends React.Component {
 
 
   render() {
+    const { modalVisible } = this.state;
     return (
       <View style={styles.main_container}>
         <View style={styles.search_container} >
           <TextInput onSubmitEditing={() => this._searchRecette()} onChangeText={(text) => this._searchTextInputChanged(text)}  style={[styles.textinput, { backgroundColor: 'lightgrey'}]} placeholder='Rechercher'/>
 
-          <Button
+          {/*<Button
             style={styles.buttonFilter}
             title="Filtres"
             color="#0c506a"
             accessibilityLabel="Learn more about this purple button"
-          />
+          />*/}
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => {
+              Alert.alert("Modal has been closed.");
+              this.setModalVisible(!modalVisible);
+            }}
+            >
+            <View style={styles.centeredView}>
+              <View style={styles.modalView}>
+                <Pressable
+                    style={[styles.button, styles.buttonClose]}
+                    onPress={() => this.setModalVisible(!modalVisible)}
+                >
+                  <Text style={styles.textStyle}>Hide Modal</Text>
+                </Pressable>
+                <Filtres/>
+              </View>
+            </View>
+          </Modal>
+          <Pressable
+              style={[styles.button, styles.buttonOpen]}
+              onPress={() => this.setModalVisible(true)}
+          >
+            <Text style={styles.textStyle}>Filtres</Text>
+          </Pressable>
         </View>
 
 
@@ -118,6 +155,50 @@ const styles = StyleSheet.create({
   },
   itemInvisible: {
     backgroundColor: 'transparent',
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "#293845",
+    borderRadius: 20,
+    padding: 35,
+    height: 500,
+    width: 330,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center"
+  },
+  buttonClose: {
+    //backgroundColor: "#2196F3",
+  },
+  buttonOpen: {
+    //backgroundColor: "#F194FF",
+    justifyContent: "center",
+    backgroundColor: "#293845",
+    padding: 10,
+    borderRadius: 50,
+    borderWidth: 1,
+    width : 100,
+  },
+  textStyle: {
+    color: "#fff",
+    fontWeight: "bold",
+    textAlign: "center"
   },
 
 })
