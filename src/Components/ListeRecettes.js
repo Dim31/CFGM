@@ -1,8 +1,7 @@
 import React from 'react'
-import {ActivityIndicator, Button, Dimensions, FlatList, ScrollView, StyleSheet, Text, View} from 'react-native'
+import {ActivityIndicator, Dimensions, FlatList, ScrollView, StyleSheet, Text, View} from 'react-native'
 import RecetteAccueil from "./RecetteAccueil";
 import {getMealsByCategory, getSingleRandomMeal} from "../API/AppelAPI"
-
 
 
 export default class ListeRecettes extends React.Component {
@@ -22,15 +21,25 @@ export default class ListeRecettes extends React.Component {
     _loadMeal(option) {
 
 
-        if (option == "random"){
+        if (option === "random") {
             let mealsList = []
-            for (let i = 0; i < 50;i++){
-                getSingleRandomMeal().then(json =>{
+            for (let i = 0; i < 50; i++) {
+                getSingleRandomMeal().then(json => {
                     var item = json.meals[0]
 
-                    mealsList.push(item)
+                    var verifIfItemAlreadyUse = false
 
-                    if (i == 9){
+                    for (let i2 = 0; i2 < mealsList.length;i2++){
+                        if (item.idMeal === mealsList[i2].idMeal){
+                            verifIfItemAlreadyUse = true
+                        }
+                    }
+
+                    if (!verifIfItemAlreadyUse){
+                        mealsList.push(item)
+                    }
+
+                    if (i === 9) {
                         this.setState({meals: mealsList})
                         this.setState({isLoading: false})
                     }
@@ -46,10 +55,7 @@ export default class ListeRecettes extends React.Component {
         }
 
 
-
     }
-
-
 
 
     render() {
@@ -58,27 +64,23 @@ export default class ListeRecettes extends React.Component {
 
         return (
             <View style={styles.conteneurDeListe}
-            onLayout={() => {this._loadMeal(this.props.item.option)}}>
+                  onLayout={() => {
+                      this._loadMeal(this.props.item.option)
+                  }}>
                 <Text> {this.props.item.titre} </Text>
                 <ScrollView>
 
                     {isLoading ? <ActivityIndicator/> : (
                         <FlatList
+                            keyExtractor={(item) => item.idMeal.toString() + this.props.item.titre}
                             horizontal
 
                             data={meals}
-                            // data={DATA}
                             showsHorizontalScrollIndicator={false}
-                            keyExtractor={(item) => {``
-                                item.idMeal.toString()
-                            }}
                             renderItem={({item}) => (
                                 <View>
-
-                                    {/*<Text>fds</Text>*/}
-
+                                    <Text>{item.idMeal.toString()}    ,    </Text>
                                     <RecetteAccueil item={item}/>
-
 
                                 </View>
                             )}
