@@ -12,8 +12,8 @@ import Compte from "./src/Screens/Compte";
 export default function App() {
   return (
       //<Navigation/>
-      <Connexion/>
-      //<Compte/>
+      //<Connexion/>
+      <Compte/>
   );
 }
 

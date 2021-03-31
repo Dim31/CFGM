@@ -26,6 +26,7 @@
     "react-native": "^0.63.4",
     "react-native-bouncy-checkbox": "^1.0.8",
     "react-native-counters": "^1.2.0",
+    "react-native-dash": "^0.0.11",
     "react-native-elements": "^3.2.0",
     "react-native-gesture-handler": "^1.10.0",
     "react-native-input-spinner": "^1.7.7",
