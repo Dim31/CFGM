@@ -29,13 +29,13 @@ export default class ListeRecettes extends React.Component {
 
                     var verifIfItemAlreadyUse = false
 
-                    for (let i2 = 0; i2 < mealsList.length;i2++){
-                        if (item.idMeal === mealsList[i2].idMeal){
+                    for (let i2 = 0; i2 < mealsList.length; i2++) {
+                        if (item.idMeal === mealsList[i2].idMeal) {
                             verifIfItemAlreadyUse = true
                         }
                     }
 
-                    if (!verifIfItemAlreadyUse){
+                    if (!verifIfItemAlreadyUse) {
                         mealsList.push(item)
                     }
 
@@ -79,9 +79,7 @@ export default class ListeRecettes extends React.Component {
                             showsHorizontalScrollIndicator={false}
                             renderItem={({item}) => (
                                 <View>
-                                    <Text>{item.idMeal.toString()}    ,    </Text>
                                     <RecetteAccueil item={item}/>
-
                                 </View>
                             )}
                         />

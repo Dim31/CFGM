@@ -1,5 +1,5 @@
 import React from 'react'
-import {Image, StyleSheet, Text, View} from 'react-native'
+import {Dimensions, Image, StyleSheet, Text, View} from 'react-native'
 
 export default class RecetteAccueil extends React.Component {
 
@@ -23,16 +23,24 @@ export default class RecetteAccueil extends React.Component {
 
 }
 
+var allWidth = Dimensions.get('window').width; //full width
 const styles = StyleSheet.create({
     conteneurRecette: {
         flexDirection: 'column',
-        marginRight: 5,
-        width: 150
+        marginRight: allWidth * 5/100,
     },
     ImageRecette: {
-        height: 150,
-        width: 150,
+        alignSelf: 'center',
+        height: allWidth / 4,
+        width: allWidth / 4,
+        borderRadius: 19,
     },
+    TextRecette: {
+        textAlign: 'center',
+        fontSize: 10,
+        marginTop: 8,
+        color: '#202C39'
+    }
 
 
 
