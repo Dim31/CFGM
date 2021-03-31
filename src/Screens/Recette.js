@@ -66,8 +66,6 @@ class Recette extends React.Component {
                     numColumns= {numColumns}
                     renderItem={this.renderItem}
                 />
-
-
             </View>
         )
     }

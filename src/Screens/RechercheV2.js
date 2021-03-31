@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { StyleSheet, View, Button, TextInput, FlatList, Text, ActivityIndicator, Dimensions, Picker, Animated,SafeAreaView, StatusBar } from 'react-native'
+import { StyleSheet, View, Button, TextInput, FlatList, Text, ActivityIndicator, Dimensions, Picker, Animated,SafeAreaView, StatusBar, TouchableOpacity, Image } from 'react-native'
 import RecetteItem from '../Components/RecetteItem'
 
 import NavigationRecherche from '../Navigation/NavigationRecherche'
@@ -23,6 +23,7 @@ const translateY = diffClamp.interpolate({
   inputRange:[0,45],
   outputRange:[0,-45]
 })
+import mami from "../../assets/mami2.png"
 
 class Recherche extends React.Component {
     constructor(props) {
@@ -60,9 +61,49 @@ class Recherche extends React.Component {
 
 
     render() {
+      this.props.navigation.setOptions({
+        headerStyle: {
+          backgroundColor: '#F1D397'
+        },
+        headerLeft: () => (
+            <View style={styles.container_headerRight}>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => this.props.navigation.navigate("Accueil")}
+              >
+                <Image
+                  style={styles.mami}
+                  source={mami}
+                />
+            </TouchableOpacity>
+          </View>
+            ),
+        headerRight: () => (
+            <View style={styles.container_headerRight}>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => this.props.navigation.navigate("Compte")}
+              >
+                <Image
+                  style={styles.image}
+                  source={{uri: 'https://image.flaticon.com/icons/png/128/1077/1077063.png'}}
+                />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => this.props.navigation.navigate("Panier")}
+            >
+              <Image
+                style={styles.image}
+                source={{uri: 'https://image.flaticon.com/icons/png/512/833/833314.png'}}
+              />
+          </TouchableOpacity>
+          </View>
+            ),
+      });
         return (
             <View style={styles.main_container}>
-                
+
                 <Animated.View
                 style={{
                   transform:[
@@ -90,7 +131,7 @@ class Recherche extends React.Component {
     }
 }
 
-
+const widthAddIcons = 30;
 const styles = StyleSheet.create({
   main_container: {
     flex: 1
@@ -135,7 +176,21 @@ const styles = StyleSheet.create({
     },
     itemInvisible: {
         backgroundColor: 'transparent',
-    }
+    },
+    container_headerRight:  {
+      flexDirection: 'row',
+    },
+    image: {
+      width: widthAddIcons,
+      height: widthAddIcons,
+      marginRight: 20,
+    },
+    mami: {
+      width: 40,
+      height: 40,
+      marginLeft: 20,
+
+    },
 })
 
 export default Recherche

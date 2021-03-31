@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, Image, TouchableOpacity , Button, Dimensions} f
 
 
 class RecetteItem extends React.Component {
+  
   render() {
     const { recette, afficherDetailsRecette } = this.props
     console.log("L id du recette est : "+recette.id);

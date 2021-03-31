@@ -13,13 +13,60 @@ import Compte from '../Screens/Compte'
 import Recherche from '../Screens/RechercheV2'
 import RecetteDetails from '../Screens/RecetteDetails'
 
+import { HeaderBackButton } from '@react-navigation/stack';
+import {FlatList, StyleSheet, Text, TouchableOpacity, View, Button, Image} from 'react-native'
+import { withNavigation } from 'react-navigation';
 
 // Accueil : Les vues dont on a besoin pour la page (sous menues compris)
 const AccueilStack = createStackNavigator();
 function AccueilStackScreen() {
  return (
    <AccueilStack.Navigator>
-    <AccueilStack.Screen name="Comme faisait Grand-mère" component={Accueil} />
+    <AccueilStack.Screen
+      name="CFGM"
+      component={Accueil}
+      // options={({ navigation, route }) => ({
+      //     headerTitle: props => <Text>hello</Text>,
+      //   })}
+      // options={{
+      //   headerLeft: ({ props }) => (
+      //     <HeaderBackButton
+      //       {...props}
+      //       onPress={() => {
+      //         // Do something
+      //       }}
+      //     />
+      //   ),
+      //   headerRight: () => (
+      //     <View style={styles.container_headerRight}>
+      //       <TouchableOpacity
+      //         //style={styles.button}
+      //         onPress={() => {
+      //
+      //         }}
+      //       >
+      //         <Image
+      //           style={styles.image}
+      //           source={{uri: 'https://image.flaticon.com/icons/png/128/1077/1077063.png'}}
+      //         />
+      //     </TouchableOpacity>
+      //     <TouchableOpacity
+      //       //style={styles.button}
+      //       //onPress={() => navigation.navigate('Compte')}
+      //       //onPress={() => navigate('Compte')}
+      //       onPress={() => navigation.navigate("Compte")}
+      //     >
+      //       <Image
+      //         style={styles.image}
+      //         source={{uri: 'https://image.flaticon.com/icons/png/512/833/833314.png'}}
+      //       />
+      //   </TouchableOpacity>
+      //   </View>
+      //     ),
+      // }}
+      />
+      <AccueilStack.Screen name="Compte" component={Compte} />
+      <AccueilStack.Screen name="Panier" component={Panier} />
    </AccueilStack.Navigator>
   );
 }
@@ -35,14 +82,14 @@ function PanierStackScreen() {
 }
 
 // Comtpe : Les vues dont on a besoin pour la page (sous menues compris)
-const CompteStack = createStackNavigator();
-function CompteStackScreen() {
-  return (
-    <CompteStack.Navigator>
-      <CompteStack.Screen name="Compte" component={Compte} />
-    </CompteStack.Navigator>
-  );
-}
+// const CompteStack = createStackNavigator();
+// function CompteStackScreen() {
+//   return (
+//     <CompteStack.Navigator>
+//       <CompteStack.Screen name="Compte" component={Compte} />
+//     </CompteStack.Navigator>
+//   );
+// }
 
 // Recherche : Les vues dont on a besoin pour la page (sous menues compris)
 const RechercheStack = createStackNavigator();
@@ -69,14 +116,14 @@ export default function App() {
               iconName = focused
               ? 'home-outline'
               : 'home-outline';
-            } else if (route.name === 'Panier') {
+            } else if (route.name === 'Recettes') {
               iconName = focused
-              ? 'basket-outline'
-              : 'basket-outline';
-            } else if (route.name === 'Compte') {
+              ? 'NaN'
+              : 'NaN'; //basket-outline
+            } else if (route.name === 'Produits') {
               iconName = focused
-              ? 'person-outline'
-              : 'person-outline';
+              ? 'NaN'
+              : 'NaN'; //person-outline
             } else if (route.name === 'Recherche') {
               iconName = focused
               ? 'search-outline'
@@ -88,10 +135,13 @@ export default function App() {
         tabBarOptions={{
           activeTintColor: 'tomato',
           inactiveTintColor: 'gray',
+          style: {
+            backgroundColor: '#293845',
+          },
         }}>
         <Tab.Screen name="Accueil" component={AccueilStackScreen} />
-        <Tab.Screen name="Panier" component={PanierStackScreen} />
-        <Tab.Screen name="Compte" component={CompteStackScreen} />
+        <Tab.Screen name="Recettes" component={AccueilStackScreen} />
+        <Tab.Screen name="Produits" component={AccueilStackScreen} />
         <Tab.Screen name="Recherche" component={RechercheStackScreen} />
       </Tab.Navigator>
     </NavigationContainer>
