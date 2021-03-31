@@ -29,10 +29,9 @@ const styles = StyleSheet.create({
         marginRight: 5,
         width: 150
     },
-
     ImageRecette: {
-        height: 94,
-        width: 94,
+        height: 150,
+        width: 150,
     },
 
 
