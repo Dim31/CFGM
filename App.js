@@ -6,10 +6,12 @@ import React from 'react';
 // import RecetteItem from './src/Components/RecetteItem'
 // import Accueil from './src/Screens/Accueil'
 import Navigation from './src/Navigation/Navigation'
+import Login from "./src/Screens/Login";
+import Signup from "./src/Screens/inscription";
 
 export default function App() {
   return (
-    <Navigation/>
+    <Login/>
   );
 }
 
