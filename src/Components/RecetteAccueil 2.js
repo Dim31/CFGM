@@ -3,19 +3,13 @@ import {Image, StyleSheet, Text, View} from 'react-native'
 
 export default class RecetteAccueil extends React.Component {
 
-    constructor(props) {
-        super(props);
-
-    }
-
-
     render() {
         return (
             <View style={styles.conteneurRecette}>
 
-                <Image style={styles.ImageRecette} source={{uri: this.props.item.strMealThumb}}/>
+                <Image style={styles.ImageRecette} source={{uri: this.props.imgurl}}/>
 
-                <Text style={styles.TextRecette}>{this.props.item.strMeal}</Text>
+                <Text style={styles.TextRecette}>{this.props.title}</Text>
             </View>
         )
     }
@@ -27,12 +21,10 @@ const styles = StyleSheet.create({
     conteneurRecette: {
         flexDirection: 'column',
         marginRight: 5,
-        width: 150
     },
-
     ImageRecette: {
-        height: 94,
-        width: 94,
+        height: 150,
+        width: 150,
     },
 
 

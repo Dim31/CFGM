@@ -24,7 +24,7 @@ export default class ListeRecettes extends React.Component {
 
         if (option == "random"){
             let mealsList = []
-            for (let i = 0; i < 50;i++){
+            for (let i = 0; i < 100;i++){
                 getSingleRandomMeal().then(json =>{
                     var item = json.meals[0]
 
@@ -59,7 +59,7 @@ export default class ListeRecettes extends React.Component {
         return (
             <View style={styles.conteneurDeListe}
             onLayout={() => {this._loadMeal(this.props.item.option)}}>
-                <Text> {this.props.item.titre} </Text>
+                <Text style={styles.N} > {this.props.item.titre} </Text>
                 <ScrollView>
 
                     {isLoading ? <ActivityIndicator/> : (
@@ -98,8 +98,8 @@ export default class ListeRecettes extends React.Component {
 var allWidth = Dimensions.get('window').width; //full width
 const styles = StyleSheet.create({
     conteneurDeListe: {
-        width: allWidth - 30,
-        height: 200,
+        width: 418,
+        height: 202,
         marginTop: 20,
         marginLeft: 20,
         marginRight: 20,
