@@ -63,6 +63,7 @@ function RecetteStackScreen() {
       />
       <AccueilStack.Screen name="Compte" component={Compte} />
       <AccueilStack.Screen name="Panier" component={Panier} />
+      <RechercheStack.Screen name="RecetteDetails" component={RecetteDetails}/ >
     </RecetteStack.Navigator>
   );
 }
