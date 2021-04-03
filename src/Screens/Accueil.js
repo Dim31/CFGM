@@ -21,51 +21,8 @@ const DATA = [
 ];
 
 
-import mami from "../../assets/mami2.png"
 export default class Accueil extends React.Component {
     render() {
-
-        this.props.navigation.setOptions({
-          headerStyle: {
-            backgroundColor: '#F1D397'
-          },
-          headerLeft: () => (
-              <View style={styles.container_headerRight}>
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => this.props.navigation.navigate("Accueil")}
-                >
-                  <Image
-                    style={styles.mami}
-                    source={mami}
-                  />
-              </TouchableOpacity>
-            </View>
-              ),
-          headerRight: () => (
-              <View style={styles.container_headerRight}>
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => this.props.navigation.navigate("Compte")}
-                >
-                  <Image
-                    style={styles.image}
-                    source={{uri: 'https://image.flaticon.com/icons/png/128/1077/1077063.png'}}
-                  />
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => this.props.navigation.navigate("Panier")}
-              >
-                <Image
-                  style={styles.image}
-                  source={{uri: 'https://image.flaticon.com/icons/png/512/833/833314.png'}}
-                />
-            </TouchableOpacity>
-            </View>
-              ),
-        });
-
         return (
             <View style={styles.mainConteneur}>
                 <StatusBar
@@ -85,22 +42,7 @@ export default class Accueil extends React.Component {
     }
 }
 
-const widthAddIcons = 30;
 const styles = StyleSheet.create({
-  container_headerRight:  {
-    flexDirection: 'row',
-  },
-  image: {
-    width: widthAddIcons,
-    height: widthAddIcons,
-    marginRight: 20,
-  },
-  mami: {
-    width: 40,
-    height: 40,
-    marginLeft: 20,
-
-  },
     mainConteneur: {
         flexDirection: 'column',
         flex: 1,

@@ -8,9 +8,11 @@ import { Ionicons } from '@expo/vector-icons';
 
 
 import Accueil from '../Screens/Accueil'
-import Panier from '../Screens/Panier'
 import Compte from '../Screens/Compte'
-import Recherche from '../Screens/RechercheV2'
+import Panier from '../Screens/Panier'
+import Recette from '../Screens/Recette'
+import Produit from '../Screens/Produits'
+import Recherche from '../Screens/Recherche'
 import RecetteDetails from '../Screens/RecetteDetails'
 
 import { HeaderBackButton } from '@react-navigation/stack';
@@ -22,48 +24,10 @@ const AccueilStack = createStackNavigator();
 function AccueilStackScreen() {
  return (
    <AccueilStack.Navigator>
-    <AccueilStack.Screen
-      name="CFGM"
-      component={Accueil}
-      // options={({ navigation, route }) => ({
-      //     headerTitle: props => <Text>hello</Text>,
-      //   })}
-      // options={{
-      //   headerLeft: ({ props }) => (
-      //     <HeaderBackButton
-      //       {...props}
-      //       onPress={() => {
-      //         // Do something
-      //       }}
-      //     />
-      //   ),
-      //   headerRight: () => (
-      //     <View style={styles.container_headerRight}>
-      //       <TouchableOpacity
-      //         //style={styles.button}
-      //         onPress={() => {
-      //
-      //         }}
-      //       >
-      //         <Image
-      //           style={styles.image}
-      //           source={{uri: 'https://image.flaticon.com/icons/png/128/1077/1077063.png'}}
-      //         />
-      //     </TouchableOpacity>
-      //     <TouchableOpacity
-      //       //style={styles.button}
-      //       //onPress={() => navigation.navigate('Compte')}
-      //       //onPress={() => navigate('Compte')}
-      //       onPress={() => navigation.navigate("Compte")}
-      //     >
-      //       <Image
-      //         style={styles.image}
-      //         source={{uri: 'https://image.flaticon.com/icons/png/512/833/833314.png'}}
-      //       />
-      //   </TouchableOpacity>
-      //   </View>
-      //     ),
-      // }}
+      <AccueilStack.Screen
+        name="CFGM"
+        component={Accueil}
+        options={optionsTopMenu}
       />
       <AccueilStack.Screen name="Compte" component={Compte} />
       <AccueilStack.Screen name="Panier" component={Panier} />
@@ -72,31 +36,49 @@ function AccueilStackScreen() {
 }
 
 // Panier : Les vues dont on a besoin pour la page (sous menues compris)
-const PanierStack = createStackNavigator();
-function PanierStackScreen() {
+const ProduitStack = createStackNavigator();
+function ProduitStackScreen() {
  return (
-   <PanierStack.Navigator>
-      <PanierStack.Screen name="Panier" component={Panier} />
-   </PanierStack.Navigator>
+   <ProduitStack.Navigator>
+      <ProduitStack.Screen
+        name="Produit"
+        component={Produit}
+        options={optionsTopMenu}
+      />
+      <AccueilStack.Screen name="Compte" component={Compte} />
+      <AccueilStack.Screen name="Panier" component={Panier} />
+   </ProduitStack.Navigator>
   );
 }
 
-// Comtpe : Les vues dont on a besoin pour la page (sous menues compris)
-// const CompteStack = createStackNavigator();
-// function CompteStackScreen() {
-//   return (
-//     <CompteStack.Navigator>
-//       <CompteStack.Screen name="Compte" component={Compte} />
-//     </CompteStack.Navigator>
-//   );
-// }
+// Recettes : Les vues dont on a besoin pour la page (sous menues compris)
+const RecetteStack = createStackNavigator();
+function RecetteStackScreen() {
+  return (
+    <RecetteStack.Navigator>
+      <RecetteStack.Screen
+        name="Recette"
+        component={Recette}
+        options={optionsTopMenu}
+      />
+      <AccueilStack.Screen name="Compte" component={Compte} />
+      <AccueilStack.Screen name="Panier" component={Panier} />
+    </RecetteStack.Navigator>
+  );
+}
 
 // Recherche : Les vues dont on a besoin pour la page (sous menues compris)
 const RechercheStack = createStackNavigator();
 function RechercheStackScreen() {
   return (
     <RechercheStack.Navigator>
-      <RechercheStack.Screen name="Recherche" component={Recherche} />
+      <RechercheStack.Screen
+        name="Recherche"
+        component={Recherche}
+        options={optionsTopMenu}
+      />
+      <AccueilStack.Screen name="Compte" component={Compte} />
+      <AccueilStack.Screen name="Panier" component={Panier} />
       <RechercheStack.Screen name="RecetteDetails" component={RecetteDetails}/ >
     </RechercheStack.Navigator>
   );
@@ -140,10 +122,80 @@ export default function App() {
           },
         }}>
         <Tab.Screen name="Accueil" component={AccueilStackScreen} />
-        <Tab.Screen name="Recettes" component={AccueilStackScreen} />
-        <Tab.Screen name="Produits" component={AccueilStackScreen} />
+        <Tab.Screen name="Recettes" component={RecetteStackScreen} />
+        <Tab.Screen name="Produits" component={ProduitStackScreen} />
         <Tab.Screen name="Recherche" component={RechercheStackScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
 }
+
+// Options Top Menu
+import mami from "../../assets/mami2.png"
+let optionsTopMenu = ({ navigation, route }) => ({
+  headerStyle: {
+    backgroundColor: '#F1D397'
+  },
+  headerLeft: () => (
+      <View style={styles.container_headerRight}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate("Accueil")}
+        >
+          <Image
+            style={styles.mami}
+            source={mami}
+          />
+      </TouchableOpacity>
+    </View>
+      ),
+  headerRight: () => (
+      <View style={styles.container_headerRight}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate("Compte")}
+        >
+          <Image
+            style={styles.image}
+            source={{uri: 'https://image.flaticon.com/icons/png/128/1077/1077063.png'}}
+          />
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate("Panier")}
+      >
+        <Image
+          style={styles.image}
+          source={{uri: 'https://image.flaticon.com/icons/png/512/833/833314.png'}}
+        />
+    </TouchableOpacity>
+    </View>
+      ),
+    });
+
+// Styles
+const widthAddIcons = 30;
+const styles = StyleSheet.create({
+  container_headerRight:  {
+    flexDirection: 'row',
+  },
+  image: {
+    width: widthAddIcons,
+    height: widthAddIcons,
+    marginRight: 20,
+  },
+  mami: {
+    width: 40,
+    height: 40,
+    marginLeft: 20,
+
+  },
+    mainConteneur: {
+        flexDirection: 'column',
+        flex: 1,
+    },
+
+    BarreDeNavigation: {
+        backgroundColor: '#000000',
+    },
+})

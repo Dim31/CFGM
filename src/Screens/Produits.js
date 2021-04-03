@@ -71,7 +71,9 @@ const styles = StyleSheet.create({
   searchBarBox: {
     margin:5,
     width:200,
-    backgroundColor:'white',
+    backgroundColor:'transparent',
+    borderTopWidth: 0,
+    borderBottomWidth: 0,
   },
   searchBar:{
     backgroundColor:'white',

@@ -1,128 +1,140 @@
-// React Native Collapsible Toolbar with Animation
-// https://aboutreact.com/react-native-collapsible-toolbar/
+import React, {useState} from 'react'
+import { StyleSheet, View, Button, TextInput, FlatList, Text, ActivityIndicator, Dimensions, Picker, Animated,SafeAreaView, StatusBar, TouchableOpacity, Image } from 'react-native'
+import RecetteItem from '../Components/RecetteItem'
 
-// import React in our code
-import React from 'react';
-import Recette from '../Screens/Recette'
+import NavigationRecherche from '../Navigation/NavigationRecherche'
 
-// import all the components we are going to use
-import {
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  View,
-  Animated,
-  Text,
-  TextInput,
-  Button
-} from 'react-native';
 
-const App = () => {
-  const dummyData = [
-    'Text',
-    'Input',
-    'Button',
-    'Card',
-    'CheckBox',
-    'Divider',
-    'Header',
-    'List Item',
-    'Pricing',
-    'Rating',
-    'Search Bar',
-    'Slider',
-    'Tile',
-    'Icon',
-    'Avatar',
-  ];
-  let AnimatedHeaderValue = new Animated.Value(0);
-  const Header_Maximum_Height = 150;
-  //Max Height of the Header
-  const Header_Minimum_Height = 50;
-  //Min Height of the Header
+const formatData = (data, numColumns) => {
+    const numberOfFullRows = Math.floor(data.length / numColumns);
 
-  const animateHeaderBackgroundColor =
-    AnimatedHeaderValue.interpolate({
-      inputRange: [0, Header_Maximum_Height - Header_Minimum_Height],
-      outputRange: ['#4286F4', '#00BCD4'],
-      extrapolate: 'clamp',
-    });
-
-  const animateHeaderHeight =
-    AnimatedHeaderValue.interpolate({
-      inputRange: [0, Header_Maximum_Height - Header_Minimum_Height],
-      outputRange: [Header_Maximum_Height, Header_Minimum_Height],
-      extrapolate: 'clamp',
-    });
-
-  return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.container}>
-        <Animated.View
-          style={[
-            styles.header,
-            {
-              height: animateHeaderHeight,
-              backgroundColor: animateHeaderBackgroundColor,
-            },
-          ]}>
-          <Text style={styles.headerText}>
-            React Native Collapsible Toolbar with Animation
-          </Text>
-          <View >
-              <TextInput placeholder='Rechercher'/>
-              <Button
-
-                  title="Filtres"
-                  color="#0c506a"
-                  accessibilityLabel="Learn more about this purple button"
-              />
-          </View>
-        </Animated.View>
-        <ScrollView
-          scrollEventThrottle={16}
-          // contentContainerStyle={{
-          //     paddingTop: Header_Maximum_Height
-          // }}
-          onScroll={Animated.event(
-            [{
-              nativeEvent: {
-                contentOffset: { y: AnimatedHeaderValue }
-              }
-            }],
-            { useNativeDriver: false }
-          )}>
-          {/* Put all your Component here inside the ScrollView */}
-          {dummyData.map((item, index) => (
-            <Recette/>
-          ))}
-        </ScrollView>
-      </View>
-    </SafeAreaView>
-  );
+    let numberOfElementsLastRow = data.length - (numberOfFullRows * numColumns);
+    while (numberOfElementsLastRow !== numColumns && numberOfElementsLastRow !== 0) {
+        data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true });
+        numberOfElementsLastRow++;
+    }
+    return data;
 };
 
-export default App;
+const numColumns = 2;
+const scrollY = new Animated.Value(0)
+const diffClamp = Animated.diffClamp(scrollY,0,45)
+const translateY = diffClamp.interpolate({
+  inputRange:[0,45],
+  outputRange:[0,-45]
+})
 
+class Recherche extends React.Component {
+    constructor(props) {
+        super(props)
+        this.page = 0
+        this.totalPages = 0
+        this.state = {
+            recettes: [{ key: 'A' }, { key: 'B' }, { key: 'C' }, { key: 'D' }, { key: 'E' }, { key: 'F' }, { key: 'G' }, { key: 'H' }, { key: 'I' }],
+            isLoading: false
+        }
+        this.searchedText = ""
+    }
+
+
+    _searchTextInputChanged(text) {
+        this.searchedText = text
+        console.log(this.searchedText);
+    }
+
+    _searchRecette() {
+
+    }
+
+    // Rendu Items recettes
+    renderItem = ({ item, index }) => {
+        if (item.empty === true) {
+            return <View style={[styles.item, styles.itemInvisible]} />;
+        }
+        return (
+            <View style={styles.item} >
+                <RecetteItem recette={item}  />
+            </View>
+        );
+    };
+
+
+    render() {
+        return (
+            <View style={styles.main_container}>
+                <Animated.View
+                style={{
+                  transform:[
+                    {translateY:translateY }
+                  ],
+                  elevation:4,
+                  zIndex:100,
+                }}
+                >
+                <View style={styles.search_container} >
+                    <TextInput onSubmitEditing={() => this._searchRecette()} onChangeText={(text) => this._searchTextInputChanged(text)}  style={[styles.textinput, { backgroundColor: 'lightgrey'}]} placeholder='Rechercher'/>
+                    <Button
+                        style={styles.buttonFilter}
+                        title="Filtres"
+                        color="#0c506a"
+                        accessibilityLabel="Learn more about this purple button"
+                    />
+                </View>
+
+                </Animated.View>
+
+                <NavigationRecherche/>
+            </View>
+        )
+    }
+}
+
+const widthAddIcons = 30;
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  main_container: {
+    flex: 1
   },
-  header: {
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    left: 0,
-    right: 0,
+  search_container:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingLeft: 20,
+    paddingRight: 20,
+
+    paddingBottom: 10,
+    paddingTop: 20,
+    // borderBottomWidth: 1,
+    borderTopWidth: 2,
+    borderColor: '#817975',
+    backgroundColor: '#d4ccc0',
+    alignItems: 'center'
   },
-  headerText: {
-    color: '#fff',
-    fontSize: 18,
-    textAlign: 'center',
-  },
-  textStyle: {
-    textAlign: 'center',
-    color: '#000',
-    fontSize: 18,
-    padding: 20,
-  },
-  });
+    textinput: {
+        marginLeft: 5,
+        marginRight: 5,
+        height: 45,
+        borderColor: '#000000',
+        borderWidth: 1,
+        paddingLeft: 5,
+        flex: 0.8,
+        borderRadius: 20
+    },
+    buttonFilter: {
+    },
+
+    flatList_container: {
+        flex: 1,
+        paddingTop: 10,
+        //marginVertical: 20,
+    },
+    item: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1
+        //height: Dimensions.get('window').width / numColumns, // approximate a square *
+    },
+    itemInvisible: {
+        backgroundColor: 'transparent',
+    },
+})
+
+export default Recherche
