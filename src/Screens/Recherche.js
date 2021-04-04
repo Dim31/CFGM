@@ -1,6 +1,18 @@
 import React, {useState} from 'react'
-import { StyleSheet, View, Button, TextInput, FlatList, Text, ActivityIndicator, Dimensions, Picker} from 'react-native'
+import {
+  StyleSheet,
+  View,
+  Button,
+  TextInput,
+  FlatList,
+  Text,
+  ActivityIndicator,
+  Dimensions,
+  Picker,
+  ImageBackground, TouchableOpacity
+} from 'react-native'
 import RecetteItem from '../Components/RecetteItem'
+import Background from "../image/Patern1.png";
 
 
 const formatData = (data, numColumns) => {
@@ -54,24 +66,24 @@ class Rechercher extends React.Component {
   render() {
     return (
       <View style={styles.main_container}>
+        <ImageBackground source={Background} style={styles.backgroundImage}>
         <View style={styles.search_container} >
           <TextInput onSubmitEditing={() => this._searchRecette()} onChangeText={(text) => this._searchTextInputChanged(text)}  style={[styles.textinput, { backgroundColor: 'lightgrey'}]} placeholder='Rechercher'/>
 
-          <Button
-            style={styles.buttonFilter}
-            title="Filtres"
-            color="#0c506a"
-            accessibilityLabel="Learn more about this purple button"
-          />
+          <TouchableOpacity style={styles.buttonFilter}>
+            <Text style={styles.buttonText}>Filtres</Text>
+          </TouchableOpacity>
         </View>
 
-
+        <View style={{flex:1}}>
         <FlatList
           data={formatData(this.state.recettes, numColumns)}
           style={styles.flatList_container}
           numColumns= {numColumns}
           renderItem={this.renderItem}
         />
+        </View>
+        </ImageBackground>
       </View>
     )
   }
@@ -103,6 +115,13 @@ const styles = StyleSheet.create({
       borderRadius: 20
     },
     buttonFilter: {
+      alignItems: "center",
+      backgroundColor: "#293845",
+      paddingVertical:10,
+      paddingHorizontal:20,
+      borderRadius: 50,
+      borderWidth: 1,
+      width: 100,
     },
 
   flatList_container: {
@@ -118,6 +137,16 @@ const styles = StyleSheet.create({
   },
   itemInvisible: {
     backgroundColor: 'transparent',
+  },
+  backgroundImage:{
+    width: '100%',
+    height: '100%',
+
+  },
+  buttonText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#ffe2c4'
   },
 
 })

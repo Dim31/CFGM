@@ -8,10 +8,11 @@ import React from 'react';
 import Navigation from './src/Navigation/Navigation'
 import Login from "./src/Screens/Login";
 import Signup from "./src/Screens/inscription";
+import Recette from "./src/Screens/Recette";
 
 export default function App() {
   return (
-    <Login/>
+    <Navigation/>
   );
 }
 
