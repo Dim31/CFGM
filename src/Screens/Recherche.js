@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { StyleSheet, View, Button, TextInput, FlatList, Text, ActivityIndicator, Dimensions, Picker, Animated,SafeAreaView, StatusBar, TouchableOpacity, Image } from 'react-native'
 import RecetteItem from '../Components/RecetteItem'
+import Filtres from "../Components/Filtres";
 
 import NavigationRecherche from '../Navigation/NavigationRecherche'
 
@@ -36,6 +37,14 @@ class Recherche extends React.Component {
         this.searchedText = ""
     }
 
+  //Visibilité modal pour le filtre
+  state = {
+    modalVisible: false
+  }
+
+  setModalVisible = (visible) => {
+    this.setState({ modalVisible: visible });
+  }
 
     _searchTextInputChanged(text) {
         this.searchedText = text
