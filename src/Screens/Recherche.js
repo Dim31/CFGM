@@ -128,6 +128,13 @@ const styles = StyleSheet.create({
         borderRadius: 20
     },
     buttonFilter: {
+      alignItems: "center",
+      backgroundColor: "#293845",
+      paddingVertical:10,
+      paddingHorizontal:20,
+      borderRadius: 50,
+      borderWidth: 1,
+      width: 100,
     },
 
     flatList_container: {
