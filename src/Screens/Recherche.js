@@ -68,7 +68,7 @@ class Rechercher extends React.Component {
       <View style={styles.main_container}>
         <ImageBackground source={Background} style={styles.backgroundImage}>
         <View style={styles.search_container} >
-          <TextInput onSubmitEditing={() => this._searchRecette()} onChangeText={(text) => this._searchTextInputChanged(text)}  style={[styles.textinput, { backgroundColor: 'lightgrey'}]} placeholder='Rechercher'/>
+          <TextInput onSubmitEditing={() => this._searchRecette()} onChangeText={(text) => this._searchTextInputChanged(text)}  style={styles.textinput} placeholder='Rechercher'/>
 
           <TouchableOpacity style={styles.buttonFilter}>
             <Text style={styles.buttonText}>Filtres</Text>
@@ -102,17 +102,17 @@ const styles = StyleSheet.create({
     paddingRight: 20,
 
     paddingBottom: 10,
-    borderBottomWidth: 1,
   },
     textinput: {
       marginLeft: 5,
       marginRight: 5,
       height: 45,
-      borderColor: '#000000',
+      borderColor: '#fff',
       borderWidth: 1,
       paddingLeft: 5,
       flex: 0.8,
-      borderRadius: 20
+      borderRadius: 20,
+      backgroundColor: '#fff'
     },
     buttonFilter: {
       alignItems: "center",
