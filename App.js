@@ -10,8 +10,8 @@ import Recette from "./src/Screens/Recette";
 
 export default function App() {
   return (
-      //<Navigation/>
+      <Navigation/>
       //<Connexion/>
-      <Compte/>
+      //<Compte/>
   );
 }

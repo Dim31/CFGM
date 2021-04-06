@@ -3,7 +3,6 @@ import ListeRecettes from "../Components/ListeRecettes";
 import React from 'react'
 import EnTete from "../Components/EnTete";
 import BarreDeNavigation from "../Components/BarreDeNavigation";
-import ListeRecettes from "../Components/ListeRecettes";
 
 const DATA = [
     {
