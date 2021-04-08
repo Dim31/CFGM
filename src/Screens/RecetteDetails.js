@@ -1,6 +1,12 @@
 import React from 'react'
 import { StyleSheet, View, Text, ActivityIndicator, ScrollView, Image, TouchableOpacity , FlatList} from 'react-native'
 
+// To Remove log
+import { LogBox } from 'react-native'
+LogBox.ignoreLogs([
+  'VirtualizedLists should never be nested', // TODO: Remove when fixed
+])
+
 //import Video from 'react-native-video'
 import {Video} from 'expo-av'
 import { WebView } from 'react-native-webview';

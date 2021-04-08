@@ -101,12 +101,12 @@ export default function App() {
               : 'home-outline';
             } else if (route.name === 'Recettes') {
               iconName = focused
-              ? 'NaN'
-              : 'NaN'; //basket-outline
+              ? 'home-outline'
+              : 'home-outline'; //basket-outline
             } else if (route.name === 'Produits') {
               iconName = focused
-              ? 'NaN'
-              : 'NaN'; //person-outline
+              ? 'home-outline'
+              : 'home-outline'; //person-outline
             } else if (route.name === 'Recherche') {
               iconName = focused
               ? 'search-outline'

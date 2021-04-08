@@ -3,8 +3,6 @@ import { StyleSheet, View, Button, TextInput, FlatList, Text, ActivityIndicator,
 import RecetteItem from '../Components/RecetteItem'
 import { withNavigation } from 'react-navigation';
 
-
-
 const formatData = (data, numColumns) => {
     const numberOfFullRows = Math.floor(data.length / numColumns);
     let numberOfElementsLastRow = data.length - (numberOfFullRows * numColumns);
