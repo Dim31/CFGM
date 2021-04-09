@@ -1,43 +1,91 @@
 import React from 'react'
-import {Dimensions, FlatList, ScrollView, StyleSheet, Text, View} from 'react-native'
-import RecetteAccueil from "../Components/RecetteAccueil";
-
-
-const DATA = [
-    {
-        id: 181808,
-        imgurl: 'https://i.pinimg.com/originals/b2/ba/31/b2ba31f90ac18e1ff8cc10e56ec2bb30.jpg',
-        titre: 'Le chat',
-    },
-    {
-        id: 176986,
-        imgurl: 'https://i.pinimg.com/originals/db/c8/0f/dbc80fc2034d97d97ce2de73da9dbc43.jpg',
-        titre: 'Le Poulet',
-    },
-    {
-        id: 1995346,
-        imgurl: 'https://i.pinimg.com/originals/f1/5a/ef/f15aefa97f3b7719d23c98d3028a9b8a.jpg',
-        titre: "Les petits poussins" ,
-    },
-];
+import {ActivityIndicator, Dimensions, FlatList, ScrollView, StyleSheet, Text, View} from 'react-native'
+import RecetteAccueil from "./RecetteAccueil";
+import {getMealsByCategory, getSingleRandomMeal} from "../API/AppelAPI"
 
 
 export default class ListeRecettes extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+
+        this.state = {
+            meals: [],
+            isLoading: true
+        };
+
+    }
+
+
+    _loadMeal(option) {
+
+
+        if (option === "random") {
+            let mealsList = []
+            for (let i = 0; i < 50; i++) {
+                getSingleRandomMeal().then(json => {
+                    var item = json.meals[0]
+
+                    var verifIfItemAlreadyUse = false
+
+                    for (let i2 = 0; i2 < mealsList.length; i2++) {
+                        if (item.idMeal === mealsList[i2].idMeal) {
+                            verifIfItemAlreadyUse = true
+                        }
+                    }
+
+                    if (!verifIfItemAlreadyUse) {
+                        mealsList.push(item)
+                    }
+
+                    if (i === 9) {
+                        this.setState({meals: mealsList})
+                        this.setState({isLoading: false})
+                    }
+                })
+
+            }
+        } else {
+            getMealsByCategory(option).then(json => {
+                var item = json.meals
+                this.setState({meals: item})
+                this.setState({isLoading: false})
+            })
+        }
+
+
+    }
+
+
     render() {
+        const {meals, isLoading} = this.state;
+
+
         return (
-            <View style={styles.conteneurDeListe}>
-                <Text> {this.props.titre} </Text>
-                <Text> {this.props.categorie} </Text>
+            <View style={styles.conteneurDeListe}
+                  onLayout={() => {
+                      this._loadMeal(this.props.item.option)
+                  }}>
+                <Text> {this.props.item.titre} </Text>
                 <ScrollView>
-                    <FlatList
-                        horizontal
-                        showsHorizontalScrollIndicator={false}
-                        data={DATA}
-                        keyExtractor={(item) => item.id.toString()}
-                        renderItem={({item}) => <RecetteAccueil style={styles.recette} title={item.titre}
-                                                                imgurl={item.imgurl}/>}
-                    />
+
+                    {isLoading ? <ActivityIndicator/> : (
+                        <FlatList
+                            keyExtractor={(item) => item.idMeal.toString() + this.props.item.titre}
+                            horizontal
+
+                            data={meals}
+                            showsHorizontalScrollIndicator={false}
+                            renderItem={({item}) => (
+                                <View>
+                                    <RecetteAccueil item={item}/>
+                                </View>
+                            )}
+                        />
+                    )}
+
+
                 </ScrollView>
             </View>
         )
@@ -46,8 +94,8 @@ export default class ListeRecettes extends React.Component {
 
 }
 
-var allWidth = Dimensions.get('window').width; //full width
 
+var allWidth = Dimensions.get('window').width; //full width
 const styles = StyleSheet.create({
     conteneurDeListe: {
         width: allWidth - 30,

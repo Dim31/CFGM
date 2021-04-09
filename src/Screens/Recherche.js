@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { StyleSheet, View, Button, TextInput, FlatList, Text, ActivityIndicator, Dimensions, Picker, Animated,SafeAreaView, StatusBar, TouchableOpacity, Image } from 'react-native'
 import RecetteItem from '../Components/RecetteItem'
+import Filtres from "../Components/Filtres";
 
 import NavigationRecherche from '../Navigation/NavigationRecherche'
 
@@ -36,6 +37,14 @@ class Recherche extends React.Component {
         this.searchedText = ""
     }
 
+  //Visibilité modal pour le filtre
+  state = {
+    modalVisible: false
+  }
+
+  setModalVisible = (visible) => {
+    this.setState({ modalVisible: visible });
+  }
 
     _searchTextInputChanged(text) {
         this.searchedText = text
@@ -119,6 +128,13 @@ const styles = StyleSheet.create({
         borderRadius: 20
     },
     buttonFilter: {
+      alignItems: "center",
+      backgroundColor: "#293845",
+      paddingVertical:10,
+      paddingHorizontal:20,
+      borderRadius: 50,
+      borderWidth: 1,
+      width: 100,
     },
 
     flatList_container: {

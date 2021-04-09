@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Image, TouchableOpacity , Button, Dimensions} f
 
 
 class RecetteItem extends React.Component {
-  
+
   render() {
     const { recette, afficherDetailsRecette } = this.props
     console.log("L id du recette est : "+recette.id);
@@ -11,17 +11,15 @@ class RecetteItem extends React.Component {
     return (
       <View style = {styles.main_container}>
         <TouchableOpacity
-
-        onPress = {() => afficherDetailsRecette(recette.id)}
-        //onPress = {() => afficherDetailsRecette(recette.id)}
-        style = {styles.content_container}
+          onPress = {() => afficherDetailsRecette(recette.id)}
+          //onPress = {() => afficherDetailsRecette(recette.id)}
+          style = {styles.content_container}
         >
           <View style={styles.cadre_container}>
             <View style={styles.header_container}>
               <Text style={styles.title_text}>Gâteau au chocolat fondant rapide {recette.id}</Text>
               <Text style={styles.price_text}>8 €</Text>
             </View>
-
             <View style={styles.description_container}>
               <Text style={styles.description_text} numberOfLines={2}>Ajoutez le mélange chocolat/beurre. Mélangez bien. Beurrez et farinez votre moule puis y versez la pâte à gâteau ...</Text>
               <Text style={styles.plus_text}>En savoir plus</Text>
@@ -31,7 +29,6 @@ class RecetteItem extends React.Component {
             style={styles.image}
             source={{uri: 'https://assets.afcdn.com/recipe/20181203/84529_w350h250c1cx1775cy2362.webp'}}
           />
-
         </TouchableOpacity>
 
         <View style={styles.ajouts_container}>
