@@ -41,9 +41,11 @@ class Compte extends React.Component {
             <SafeAreaView style={styles.main_container}>
                 <ImageBackground source={pattern2_travers} style={styles.patternStyle}>
                     {/*En-tete*/}
+                    {/*
                     <View style={styles.enTeteView}>
                         <ImageBackground source={en_tete} style={styles.enTeteStyle}/>
                     </View>
+                    */}
                     <ScrollView style={styles.scrollView}>
                         {/*Avatar*/}
                         <View style={styles.avatarView}>
@@ -157,7 +159,7 @@ const styles = StyleSheet.create({
     },
     patternStyle: {
         resizeMode: 'stretch',
-        height: '115%',
+        height: '100%',
         width: '100%',
     },
     enTeteStyle: {
