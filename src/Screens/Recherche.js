@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { StyleSheet, View, Button, TextInput, FlatList, Text, ActivityIndicator, Dimensions, Picker, Animated,SafeAreaView, StatusBar, TouchableOpacity, Image } from 'react-native'
 import RecetteItem from '../Components/RecetteItem'
-import Filtres from "../Components/Filtres";
+// import Filtres from "../Components/Filtres";
 
 import NavigationRecherche from '../Navigation/NavigationRecherche'
 

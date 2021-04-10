@@ -1,18 +1,17 @@
 import React from 'react'
 import {
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-    ImageBackground,
-    ScrollView,
     Image,
+    ImageBackground,
     SafeAreaView,
-    StatusBar
+    ScrollView,
+    StatusBar,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View
 } from 'react-native'
-import { ButtonGroup, Avatar, Divider } from "react-native-elements";
+import {Avatar} from "react-native-elements";
 import pattern2_travers from "../image/Patern2_travers.png";
-import en_tete from "../image/en-tete.png";
 import call from "../image/call.png"
 import woman from "../image/woman.png"
 import email from "../image/email.png"
@@ -36,7 +35,7 @@ class Compte extends React.Component {
     }
 
     render() {
-        const { selectedIndex } = this.state
+        const {selectedIndex} = this.state
         return (
             <SafeAreaView style={styles.main_container}>
                 <ImageBackground source={pattern2_travers} style={styles.patternStyle}>
@@ -103,22 +102,28 @@ class Compte extends React.Component {
                                     <Image source={pencil} style={styles.image}/>
                                     <Text style={styles.text}>Modifier mes informations</Text>
                                 </TouchableOpacity>
-                                <Dash dashGap={10} dashLength={10} dashThickness={1} dashColor={'#F0955F'} style={{marginTop:20}}/>
+                                <Dash dashGap={10} dashLength={10} dashThickness={1} dashColor={'#F0955F'}
+                                      style={{marginTop: 20}}/>
                             </View>
                             {/*Mes commandes*/}
                             <View style={styles.informations}>
                                 <Text style={styles.title}>Mes commandes:</Text>
                                 {/*TODO : Component à faire*/}
-                                <Dash dashGap={10} dashLength={10} dashThickness={1} dashColor={'#F0955F'} style={{marginTop:20}}/>
+                                <Dash dashGap={10} dashLength={10} dashThickness={1} dashColor={'#F0955F'}
+                                      style={{marginTop: 20}}/>
                             </View>
                             {/*Mes moyens de paiement*/}
                             <View style={styles.informations}>
                                 <Text style={styles.title}>Mes moyens de paiement:</Text>
                                 <View style={styles.bi_icons}>
-                                    <TouchableOpacity style={styles.bi_icons}><Image source={paypal} style={styles.paymentLogo}/></TouchableOpacity>
-                                    <TouchableOpacity style={styles.bi_icons}><Image source={visa} style={styles.paymentLogo}/></TouchableOpacity>
-                                    <TouchableOpacity style={styles.bi_icons}><Image source={applepay} style={styles.paymentLogo}/></TouchableOpacity>
-                                    <TouchableOpacity style={styles.bi_icons}><Image source={mastercard} style={styles.paymentLogo}/></TouchableOpacity>
+                                    <TouchableOpacity style={styles.bi_icons}><Image source={paypal}
+                                                                                     style={styles.paymentLogo}/></TouchableOpacity>
+                                    <TouchableOpacity style={styles.bi_icons}><Image source={visa}
+                                                                                     style={styles.paymentLogo}/></TouchableOpacity>
+                                    <TouchableOpacity style={styles.bi_icons}><Image source={applepay}
+                                                                                     style={styles.paymentLogo}/></TouchableOpacity>
+                                    <TouchableOpacity style={styles.bi_icons}><Image source={mastercard}
+                                                                                     style={styles.paymentLogo}/></TouchableOpacity>
                                 </View>
                             </View>
                             {/*Coups de coeur*/}
@@ -213,15 +218,15 @@ const styles = StyleSheet.create({
         left: 10,
     },
     image: {
-        width:13,
-        height:13,
+        width: 13,
+        height: 13,
         marginTop: 10,
         marginLeft: 10,
         marginRight: 2,
         marginBottom: 10,
     },
     informations: {
-        flex:1,
+        flex: 1,
         //backgroundColor: 'pink',
         margin: 15,
     },
@@ -245,8 +250,8 @@ const styles = StyleSheet.create({
         opacity: .40,
     },
     paymentLogo: {
-        width:46,
-        height:46,
+        width: 46,
+        height: 46,
         marginTop: 10,
         marginLeft: 10,
         marginRight: 2,
