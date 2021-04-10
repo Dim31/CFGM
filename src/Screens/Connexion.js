@@ -1,34 +1,38 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native"
+import {View, Text, StyleSheet, Image, TouchableOpacity, ImageBackground} from "react-native"
+import Logo_6 from '../image/Logo_6.png'
+import pattern1_travers from '../image/Patern1_travers.png'
 
 class Connexion extends React.Component {
     render() {
         return (
             <View style={styles.main_container}>
+                <ImageBackground source={pattern1_travers} style={styles.patternStyle}>
                 <View style={styles.first_container}>
                     <Image
                         style={styles.image}
-                        source={{uri:"logo"}}
+                        source={Logo_6}
                     />
-                    <Text style={styles.slogan}> Slogan de notre application </Text>
                 </View>
                 <View style={styles.second_container}>
-                    <TouchableOpacity
-                        style={styles.button}
-                        onPress={() => []}
-                    >
-                        <Text style={styles.textCommencer}>Commencer</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        onPress={() => []}
-                    >
-                        <Text style={styles.textCompte}> J'ai déjà un compte </Text>
-                    </TouchableOpacity>
-
+                    <Text style={styles.slogan}> Cuisinez local ! </Text>
+                    <Text style={styles.sousSlogan}> C'est le moment de mettre les pieds dans le plat ! </Text>
                 </View>
                 <View style={styles.third_container}>
-                    <Text> Expression de grand-parents qui change </Text>
+                    <TouchableOpacity
+                        style={styles.buttonBegin}
+                        onPress={() => []}
+                    >
+                        <Text style={styles.textBegin}>Commencer</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.buttonAlready}
+                        onPress={() => []}
+                    >
+                        <Text style={styles.textAlready}> J'ai déjà un compte </Text>
+                    </TouchableOpacity>
                 </View>
+                </ImageBackground>
             </View>
         )
     }
@@ -37,51 +41,75 @@ class Connexion extends React.Component {
 const styles = StyleSheet.create({
     main_container: {
         flex: 1,
-        //backgroundColor: 'yellow',
+        backgroundColor: '#F1D397',
         marginTop: 30,
     },
     first_container: {
-        flex: 3,
+        flex: 1,
+        marginTop: 30,
         //backgroundColor: 'blue',
         justifyContent: 'center',
         alignItems: 'center',
     },
     second_container: {
-        flex: 3,
+        flex: 0.25,
         //backgroundColor: 'red',
         alignItems: 'center',
     },
     third_container: {
         flex: 1,
         //backgroundColor: 'green',
-        justifyContent: 'center',
         alignItems: 'center',
     },
     image: {
-        width: 180,
-        height: 180,
+        resizeMode: 'stretch',
+        //width: 210,
+        //height: 205,
+        width: 150,
+        height: 150,
         margin: 5,
-        backgroundColor: 'gray'
+        backgroundColor: 'transparent'
     },
     slogan: {
-        fontSize: 18,
-    },
-    button: {
-        alignItems: "center",
-        backgroundColor: "#4DAAFC",
-        padding: 20,
-        borderRadius: 20,
-        marginTop: 40,
-        marginBottom: 40,
-    },
-    textCommencer: {
-        fontSize: 30,
+        fontSize: 23,
         fontWeight: 'bold',
+        color: '#293845',
+    },
+    sousSlogan: {
+        fontSize: 15,
+        color: '#293845',
+    },
+    buttonBegin: {
+        alignItems: "center",
+        backgroundColor: "#293845",
+        padding: 20,
+        borderRadius: 50,
+        borderWidth: 1,
+        marginTop: 40,
+        width: 230,
+    },
+    buttonAlready:{
+        alignItems: "center",
+        backgroundColor: "#F1D397",
+        padding: 20,
+        borderRadius: 50,
+        marginTop: 10,
+        borderWidth: 1,
+        borderColor: "#293845",
+        width: 230,
+    },
+    textBegin: {
+        fontSize: 20,
         color: '#fff',
     },
-    textCompte: {
+    textAlready: {
         fontSize: 20,
-    }
+    },
+    patternStyle: {
+        resizeMode: 'stretch',
+        height: '115%',
+        width: '100%',
+    },
 })
 
 export default Connexion

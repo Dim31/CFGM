@@ -1,33 +1,17 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { SafeAreaView, StatusBar, View } from 'react-native'
+import Navigation from './src/Navigation/Navigation'
+import Connexion from "./src/Screens/Connexion";
+import Compte from "./src/Screens/Compte";
 
-
-import Accueil from "./src/Screens/Accueil";
-import Nav from "./src/Navigation/Navigation";
-// import Aide from "./src/Screens/Aide";
-// import Compte from "./src/Screens/Compte";
-// import Connexion from "./src/Screens/Connexion";
-// import Panier from "./src/Screens/Panier";
-// import Produits from "./src/Screens/Produits";
-// import Recette from "./src/Screens/Recette";
-
+import Login from "./src/Screens/Login";
+import Signup from "./src/Screens/inscription";
+import Recette from "./src/Screens/Recette";
 
 export default function App() {
-    return (
-
-                <Nav/>
-
-    );
+  return (
+      <Navigation/>
+      //<Connexion/>
+      //<Compte/>
+  );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginTop: 30,
-    },
-});

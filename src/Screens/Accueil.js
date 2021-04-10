@@ -1,9 +1,8 @@
-import {FlatList, StyleSheet, View} from 'react-native'
+import {FlatList, StyleSheet, Text, TouchableOpacity, View, StatusBar, Icon, Button, Image} from 'react-native'
+import ListeRecettes from "../Components/ListeRecettes";
 import React from 'react'
 import EnTete from "../Components/EnTete";
 import BarreDeNavigation from "../Components/BarreDeNavigation";
-import ListeRecettes from "../Components/ListeRecettes";
-
 
 const DATA = [
     {
@@ -26,14 +25,16 @@ const DATA = [
 
 
 export default class Accueil extends React.Component {
-
-
     render() {
-
         return (
-
             <View style={styles.mainConteneur}>
-
+                <StatusBar
+                  animated={true}
+                  backgroundColor="white"
+                  barStyle='dark-content'
+                  showHideTransition='fade'
+                  hidden= {false}
+                />
                 <EnTete></EnTete>
 
 
@@ -46,24 +47,17 @@ export default class Accueil extends React.Component {
 
                 <BarreDeNavigation/>
             </View>
-
-
         )
     }
-
 }
 
+const styles = StyleSheet.create({
+    mainConteneur: {
+        flexDirection: 'column',
+        flex: 1,
+    },
 
-const styles = StyleSheet.create(
-    {
-        mainConteneur: {
-            flexDirection: 'column',
-            flex: 1,
-        },
-
-        BarreDeNavigation: {
-            height: 80,
-            backgroundColor: '#000000',
-        },
-    }
-)
+    BarreDeNavigation: {
+        backgroundColor: '#000000',
+    },
+})
