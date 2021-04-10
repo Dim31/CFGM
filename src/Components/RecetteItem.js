@@ -1,9 +1,7 @@
 import React from 'react'
 import { StyleSheet, View, Text, Image, TouchableOpacity , Button, Dimensions} from 'react-native'
 
-
 class RecetteItem extends React.Component {
-
   render() {
     const { recette, afficherDetailsRecette } = this.props
     console.log("L id du recette est : "+recette.id);

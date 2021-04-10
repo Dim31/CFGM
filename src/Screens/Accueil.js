@@ -1,8 +1,7 @@
-import {FlatList, StyleSheet, Text, TouchableOpacity, View, StatusBar, Icon, Button, Image} from 'react-native'
+import {FlatList, StyleSheet, Text, TouchableOpacity, View, StatusBar, Icon, Button, Image, ImageBackground, ScrollView} from 'react-native'
 import ListeRecettes from "../Components/ListeRecettes";
 import React from 'react'
-import EnTete from "../Components/EnTete";
-import BarreDeNavigation from "../Components/BarreDeNavigation";
+import pattern2_travers from "../image/Patern2_travers.png";
 
 const DATA = [
     {
@@ -12,9 +11,8 @@ const DATA = [
     },
     {
         id: 5123524,
-        titre: 'Recettes Végétarienne',
+        titre: 'Recettes Végétariennes',
         option: 'Vegetarian'
-
     },
     {
         id: 2354326,
@@ -23,32 +21,29 @@ const DATA = [
     },
 ];
 
-
 export default class Accueil extends React.Component {
-    render() {
-        return (
-            <View style={styles.mainConteneur}>
-                <StatusBar
-                  animated={true}
-                  backgroundColor="white"
-                  barStyle='dark-content'
-                  showHideTransition='fade'
-                  hidden= {false}
-                />
-                <EnTete></EnTete>
-
-
-                <FlatList data={DATA}
-                          keyExtractor={(item) => item.id.toString()}
-                          renderItem={({item}) =>
-                              <ListeRecettes item={item}/>}
-                />
-
-
-                <BarreDeNavigation/>
-            </View>
-        )
-    }
+  render() {
+    return (
+      <ImageBackground source={pattern2_travers} style={styles.backgroudImage}>
+        <ScrollView style={styles.mainConteneur}>
+            <StatusBar
+              animated={true}
+              backgroundColor="white"
+              barStyle='dark-content'
+              showHideTransition='fade'
+              hidden= {false}
+            />
+            <Text style={styles.phraseHello}> Au fourneau les enfants !</Text>
+            <FlatList
+              style={styles.flatListeRecette}
+              data={DATA}
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={({item}) => <ListeRecettes item={item} navigation={this.props.navigation}/>}
+            />
+        </ScrollView>
+      </ImageBackground>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
@@ -56,8 +51,16 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         flex: 1,
     },
-
-    BarreDeNavigation: {
-        backgroundColor: '#000000',
+    backgroudImage: {
+      flex: 1,
+      resizeMode: "cover",
+      justifyContent: "center",
     },
+    phraseHello: {
+      textAlign: "center",
+      marginTop: 50
+    },
+    flatListeRecette: {
+      paddingTop: 50,
+    }
 })

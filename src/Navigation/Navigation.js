@@ -31,6 +31,7 @@ function AccueilStackScreen() {
       />
       <AccueilStack.Screen name="Compte" component={Compte} />
       <AccueilStack.Screen name="Panier" component={Panier} />
+      <RechercheStack.Screen name="RecetteDetails" component={RecetteDetails}/ >
    </AccueilStack.Navigator>
   );
 }
@@ -135,7 +136,15 @@ export default function App() {
 import mami from "../../assets/mami2.png"
 let optionsTopMenu = ({ navigation, route }) => ({
   headerStyle: {
-    backgroundColor: '#F1D397'
+    backgroundColor: '#F1D397',
+    shadowColor: "#000",
+    shadowOffset: {
+    	width: 0,
+    	height: 8,
+    },
+    shadowOpacity: 0.20,
+    shadowRadius: 5,
+    elevation: 14,
   },
   headerLeft: () => (
       <View style={styles.container_headerRight}>
