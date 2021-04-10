@@ -1,7 +1,7 @@
 import {FlatList, StyleSheet, Text, TouchableOpacity, View, StatusBar, Icon, Button, Image, ImageBackground, ScrollView} from 'react-native'
 import ListeRecettes from "../Components/ListeRecettes";
 import React from 'react'
-import pattern2_travers from "../image/Patern2_travers.png";
+import pattern2_travers from "../image/Patern2_travers2.png";
 
 const DATA = [
     {
@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
     },
     phraseHello: {
       textAlign: "center",
+      fontSize: 15,
       marginTop: 50
     },
     flatListeRecette: {
