@@ -3,6 +3,8 @@ import { StyleSheet, View, Button, TextInput, FlatList, Text, ActivityIndicator,
 import RecetteItem from '../Components/RecetteItem'
 import { withNavigation } from 'react-navigation';
 
+
+
 const formatData = (data, numColumns) => {
     const numberOfFullRows = Math.floor(data.length / numColumns);
     let numberOfElementsLastRow = data.length - (numberOfFullRows * numColumns);
@@ -39,7 +41,7 @@ class Recette extends React.Component {
     }
 
     _afficherDetailsRecette = (idRecette) => {
-      this.props.navigation.navigate("RecetteDetails", {idRecette: idRecette})
+        this.props.navigation.navigate("RecetteDetails", {idRecette: idRecette})
     }
 
     // Rendu Items recettes
@@ -58,12 +60,12 @@ class Recette extends React.Component {
     render() {
         return (
             <View style={styles.main_container}>
-                <FlatList
-                    data={formatData(this.state.recettes, numColumns)}
-                    style={styles.flatList_container}
-                    numColumns= {numColumns}
-                    renderItem={this.renderItem}
-                />
+                    <FlatList
+                        data={formatData(this.state.recettes, numColumns)}
+                        style={styles.flatList_container}
+                        numColumns= {numColumns}
+                        renderItem={this.renderItem}
+                    />
             </View>
         )
     }
@@ -71,18 +73,18 @@ class Recette extends React.Component {
 
 
 const styles = StyleSheet.create({
-  main_container: {
-    flex: 1,
-  },
-  search_container:{
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingLeft: 20,
-    paddingRight: 20,
+    main_container: {
+        flex: 1,
+    },
+    search_container:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingLeft: 20,
+        paddingRight: 20,
 
-    paddingBottom: 10,
-    borderBottomWidth: 1,
-  },
+        paddingBottom: 10,
+        borderBottomWidth: 1,
+    },
     textinput: {
         marginLeft: 5,
         marginRight: 5,
@@ -117,3 +119,4 @@ const styles = StyleSheet.create({
 })
 
 export default Recette
+

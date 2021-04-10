@@ -3,50 +3,52 @@ import { StyleSheet, View, Text, Image, TouchableOpacity , Button, Dimensions} f
 
 
 class RecetteItem extends React.Component {
-
   render() {
     const { recette, afficherDetailsRecette } = this.props
     console.log("L id du recette est : "+recette.id);
     console.log("L key du recette est : "+recette.key);
     return (
-      <View style = {styles.main_container}>
-        <TouchableOpacity
-          onPress = {() => afficherDetailsRecette(recette.id)}
-          //onPress = {() => afficherDetailsRecette(recette.id)}
-          style = {styles.content_container}
-        >
-          <View style={styles.cadre_container}>
-            <View style={styles.header_container}>
-              <Text style={styles.title_text}>Gâteau au chocolat fondant rapide {recette.id}</Text>
-              <Text style={styles.price_text}>8 €</Text>
-            </View>
-            <View style={styles.description_container}>
-              <Text style={styles.description_text} numberOfLines={2}>Ajoutez le mélange chocolat/beurre. Mélangez bien. Beurrez et farinez votre moule puis y versez la pâte à gâteau ...</Text>
-              <Text style={styles.plus_text}>En savoir plus</Text>
-            </View>
-          </View>
-          <Image
-            style={styles.image}
-            source={{uri: 'https://assets.afcdn.com/recipe/20181203/84529_w350h250c1cx1775cy2362.webp'}}
-          />
-        </TouchableOpacity>
+        <View style = {styles.main_container}>
+          <TouchableOpacity
 
-        <View style={styles.ajouts_container}>
-          <TouchableOpacity onPress={()=>this._ajoutRecettePanier()}>
+              onPress = {() => afficherDetailsRecette(recette.id)}
+              //onPress = {() => afficherDetailsRecette(recette.id)}
+              style = {styles.content_container}
+          >
+            <View style={styles.cadre_container}>
+              <View style={styles.header_container}>
+                <Text style={styles.title_text}>Gâteau au chocolat fondant rapide {recette.id}</Text>
+                <Text style={styles.price_text}>8 €</Text>
+              </View>
+
+              <View style={styles.description_container}>
+                <Text style={styles.description_text} numberOfLines={2}>Ajoutez le mélange chocolat/beurre. Mélangez bien. Beurrez et farinez votre moule puis y versez la pâte à gâteau ...</Text>
+                <Text style={styles.plus_text}>En savoir plus</Text>
+              </View>
+            </View>
             <Image
-              style={styles.imageCoeur}
-              source={{uri: 'https://img.icons8.com/ios/452/hearts--v1.png'}}
+                style={styles.image}
+                source={{uri: 'https://assets.afcdn.com/recipe/20181203/84529_w350h250c1cx1775cy2362.webp'}}
             />
+
           </TouchableOpacity>
-          <Text style={styles.text_text}></Text>
-          <TouchableOpacity onPress={()=>this._ajoutRecetteFavoris()}>
-            <Image
-              style={styles.imagePanier}
-              source={{uri: 'https://image.flaticon.com/icons/png/512/126/126510.png'}}
-            />
-          </TouchableOpacity>
+
+          <View style={styles.ajouts_container}>
+            <TouchableOpacity onPress={()=>this._ajoutRecettePanier()}>
+              <Image
+                  style={styles.imageCoeur}
+                  source={{uri: 'https://img.icons8.com/ios/452/hearts--v1.png'}}
+              />
+            </TouchableOpacity>
+            <Text style={styles.text_text}></Text>
+            <TouchableOpacity onPress={()=>this._ajoutRecetteFavoris()}>
+              <Image
+                  style={styles.imagePanier}
+                  source={{uri: 'https://image.flaticon.com/icons/png/512/126/126510.png'}}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
     )
   }
 
@@ -61,12 +63,12 @@ const styles = StyleSheet.create({
     marginBottom: 40,
 
     borderRadius:  20,
-    backgroundColor: '#45add9',
+    //backgroundColor: '#45add9',
     backgroundColor: '#FFFFFF',
     shadowColor: "#000",
     shadowOffset: {
-    	width: 0,
-    	height: 2,
+      width: 0,
+      height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
@@ -126,7 +128,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 15,
     color: '#083f57',
-    color : '#F0955F',
+    //color : '#F0955F',
   },
 
 
