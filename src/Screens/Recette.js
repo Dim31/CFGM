@@ -1,21 +1,6 @@
 import React from 'react'
 import {ActivityIndicator,ScrollView, Image, FlatList, StyleSheet, Text, View} from 'react-native'
 import RecetteItem from '../Components/RecetteItem'
-<<<<<<< Updated upstream
-import { withNavigation } from 'react-navigation';
-
-
-
-const formatData = (data, numColumns) => {
-    const numberOfFullRows = Math.floor(data.length / numColumns);
-    let numberOfElementsLastRow = data.length - (numberOfFullRows * numColumns);
-    while (numberOfElementsLastRow !== numColumns && numberOfElementsLastRow !== 0) {
-        data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true });
-        numberOfElementsLastRow++;
-    }
-    return data;
-};
-=======
 import RecetteAccueil from "../Components/RecetteAccueil";
 import {getSingleRandomMeal} from "../API/AppelAPI"
 
@@ -28,7 +13,6 @@ import {getSingleRandomMeal} from "../API/AppelAPI"
 //     }
 //     return data;
 // };
->>>>>>> Stashed changes
 
 const numColumns = 2;
 
@@ -58,10 +42,6 @@ class Recette extends React.Component {
 
     }
 
-<<<<<<< Updated upstream
-    _afficherDetailsRecette = (idRecette) => {
-        this.props.navigation.navigate("RecetteDetails", {idRecette: idRecette})
-=======
     _afficherDetailsRecette = (item) => {
         this.props.navigation.navigate("RecetteDetails", {item: item})
     }
@@ -92,7 +72,6 @@ class Recette extends React.Component {
             })
 
         }
->>>>>>> Stashed changes
     }
 
     // Rendu Items recettes
@@ -112,15 +91,6 @@ class Recette extends React.Component {
         const {meals, isLoading} = this.state;
 
         return (
-<<<<<<< Updated upstream
-            <View style={styles.main_container}>
-                    <FlatList
-                        data={formatData(this.state.recettes, numColumns)}
-                        style={styles.flatList_container}
-                        numColumns= {numColumns}
-                        renderItem={this.renderItem}
-                    />
-=======
             <View
                 style={styles.main_container}
                 onLayout={() => {
@@ -139,7 +109,6 @@ class Recette extends React.Component {
                             )}
                         />
                 )}
->>>>>>> Stashed changes
             </View>
         )
     }
@@ -148,52 +117,6 @@ class Recette extends React.Component {
 
 
 const styles = StyleSheet.create({
-<<<<<<< Updated upstream
-    main_container: {
-        flex: 1,
-    },
-    search_container:{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingLeft: 20,
-        paddingRight: 20,
-
-        paddingBottom: 10,
-        borderBottomWidth: 1,
-    },
-    textinput: {
-        marginLeft: 5,
-        marginRight: 5,
-        height: 45,
-        borderColor: '#000000',
-        borderWidth: 1,
-        paddingLeft: 5,
-        flex: 0.8,
-        borderRadius: 20
-    },
-    buttonFilter: {
-    },
-    liste:{
-
-    },
-
-    flatList_container: {
-        flex: 1,
-        paddingTop: 10,
-        //marginVertical: 20,
-    },
-    item: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        flex: 1
-        //height: Dimensions.get('window').width / numColumns, // approximate a square *
-    },
-    itemInvisible: {
-        backgroundColor: 'transparent',
-    },
-
-})
-=======
         main_container: {
             flex: 1,
         },
@@ -242,7 +165,5 @@ const styles = StyleSheet.create({
         ,
     }
 )
->>>>>>> Stashed changes
 
 export default Recette
-

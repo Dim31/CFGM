@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
-import {FlatList, StyleSheet, View} from 'react-native'
-=======
 import {FlatList, StatusBar, StyleSheet, View} from 'react-native'
->>>>>>> Stashed changes
 import ListeRecettes from "../Components/ListeRecettes";
 import React from 'react'
 
@@ -30,8 +26,6 @@ export default class Accueil extends React.Component {
     render() {
         return (
             <View style={styles.mainConteneur}>
-<<<<<<< Updated upstream
-=======
                 <StatusBar
                     animated={true}
                     backgroundColor="white"
@@ -40,7 +34,6 @@ export default class Accueil extends React.Component {
                     hidden={false}
                 />
 
->>>>>>> Stashed changes
 
                 <FlatList data={DATA}
                           keyExtractor={(item) => item.id.toString()}
@@ -48,10 +41,7 @@ export default class Accueil extends React.Component {
                               <ListeRecettes item={item}/>}
                 />
 
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
             </View>
         )
     }
