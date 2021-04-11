@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, Text, ActivityIndicator, ScrollView, Image, TouchableOpacity , FlatList} from 'react-native'
+import { StyleSheet,VirtualizedList, View, Text, ActivityIndicator, ScrollView, Image, TouchableOpacity , FlatList} from 'react-native'
 
 // To Remove log
 import { LogBox } from 'react-native'
@@ -13,6 +13,12 @@ import { WebView } from 'react-native-webview';
 
 import ProduitLittleItem from '../Components/ProduitLittleItem'
 
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+}
+
 const numColumns = 2;
 const formatData = (data, numColumns) => {
     const numberOfFullRows = Math.floor(data.length / numColumns);
@@ -24,15 +30,17 @@ const formatData = (data, numColumns) => {
     return data;
 };
 
+
+
 class RecetteDetails extends React.Component {
+
   constructor(props) {
     super(props)
     this.state = {
-      recette: undefined,
       isLoading: true,
-      produits: [{ key: 'A', id: 1, nom:'Tomates'}, { key: 'B', id: 2, nom:'Carottes' }, { key: 'C' , id: 3, nom:'Pâte feuilleté'}, { key: 'D' , id: 4, nom:'Chocolat'}],
     }
   }
+
 
   componentDidMount() {
     console.log("componentDidMount");
@@ -57,9 +65,26 @@ class RecetteDetails extends React.Component {
       }
   }
 
+  _getAllIngredient(item){
+    let allIngredient = []
+    let contIngredient = 1
+
+    while (item["strIngredient" + contIngredient] != ""){
+      allIngredient.push({
+        "id" : contIngredient.toString() ,
+        "ingredient": item['strIngredient' + String(contIngredient)],
+      })
+      contIngredient++
+    }
+
+
+    return allIngredient
+
+  }
+
   // Rendu Items Produits
-  renderItem = ({ item, index }) => {
-      if (item.empty === true) {
+  renderItem = (item) => {
+      if (item === undefined) {
           return <View style={[styles.item, styles.itemInvisible]} />;
       }
       return (
@@ -70,11 +95,11 @@ class RecetteDetails extends React.Component {
   };
 
   _afficherDetailsProduit = (idProduit) => {
-    this.props.navigation.navigate("ProduitDetails", {idProduit: idProduit})
+    this.props.navigation.navigate("ProduitDetails", {item: item})
   }
 
   // Affichage
-  _displayRecette() {
+  _displayRecette(item) {
     const recette = this.state.recette
     const opts = {
       height: '390',
@@ -85,14 +110,14 @@ class RecetteDetails extends React.Component {
       },
     };
     //if (recette != undefined) {
-    if (this.props.route.params.idRecette != undefined) {
+    if (item != []) {
       return (
         <ScrollView style={styles.scrollview_container}>
           <Image
             style={styles.image}
-            source={{uri: "https://recipeimages.migros.ch/crop/v-w-1200-h-630-a-center_center/46bffe3dd0c25933234fd2180eecc6060368e9bf/gateau-au-chocolat-avec-cerises-0-16-9.jpg"}} // getImageFromApi(film.backdrop_path)}
+            source={{uri:item.strMealThumb}}
           />
-          <Text style={styles.title_text}>Gâteau au chocolat fondant rapide {this.props.route.params.idRecette}</Text>
+          <Text style={styles.title_text}>{item.strMeal}</Text>
 
           <View style={styles.firstPart_container}>
             <View style={styles.ajouts_container}>
@@ -116,9 +141,9 @@ class RecetteDetails extends React.Component {
               <Text>Prix</Text>
             </View>
             <View style={styles.infos_container}>
-              <Text>xxxx</Text>
+              <Text> X X X</Text>
               <Text style={styles.text_text}></Text>
-              <Text>10,00€</Text>
+              <Text>{getRandomInt(8,60)}€</Text>
             </View>
             <Text style={styles.description_text}>C'est l'heure du goûter les enfants !</Text>
           </View>
@@ -160,11 +185,11 @@ class RecetteDetails extends React.Component {
           <View style={styles.infosUtiles_container}>
             <View style={styles.infosUtiles_item}>
               <Text style={ styles.infosUtiles_titres}>Personnes</Text>
-              <Text style={ styles.infosUtiles_text}>2</Text>
+              <Text style={ styles.infosUtiles_text}>{getRandomInt(1,10)}</Text>
             </View>
             <View style={styles.infosUtiles_item}>
               <Text style={ styles.infosUtiles_titres}>Temps</Text>
-              <Text style={ styles.infosUtiles_text}>20 min</Text>
+              <Text style={ styles.infosUtiles_text}>{getRandomInt(5,60)} min</Text>
             </View>
             <View style={styles.infosUtiles_item}>
               <Text style={ styles.infosUtiles_titres}>Ustensiles</Text>
@@ -173,23 +198,19 @@ class RecetteDetails extends React.Component {
           </View>
 
           <FlatList
-              data={formatData(this.state.produits, numColumns)}
+              data={this._getAllIngredient(item)}
               style={styles.produitsFlatList_container}
               numColumns= {numColumns}
-              renderItem={this.renderItem}
+              keyExtractor={(item) => item.id}
+              renderItem={({item}) => (
+                this.renderItem(item)
+              )}
 
           />
 
           <View style={styles.etapes_container}>
-            <Text style={ styles.etapes_title}>Etape 1</Text>
-            <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Convallis tellus id interdum velit laoreet. Justo eget magna fermentum iaculis eu non diam phasellus. Integer quis auctor elit sed vulputate mi sit amet mauris. Aliquet lectus proin nibh nisl condimentum. Sapien et ligula ullamcorper malesuada proin libero nunc. Facilisi etiam dignissim diam quis enim lobortis. Duis ut diam quam nulla porttitor. Non tellus orci ac auctor. Porttitor massa id neque aliquam vestibulum morbi blandit cursus. Tellus molestie nunc non blandit massa. Nam at lectus urna duis convallis convallis tellus. Tristique sollicitudin nibh sit amet commodo. Scelerisque felis imperdiet proin fermentum leo vel orci. Tellus rutrum tellus pellentesque eu tincidunt tortor aliquam nulla. Sit amet nisl purus in mollis nunc sed. Aliquam purus sit amet luctus venenatis lectus. Sagittis purus sit amet volutpat consequat mauris nunc congue.</Text>
-            <Text style={ styles.etapes_title}>Etape 2</Text>
-            <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Convallis tellus id interdum velit laoreet. Justo eget magna fermentum iaculis eu non diam phasellus. Integer quis auctor elit sed vulputate mi sit amet mauris. Aliquet lectus proin nibh nisl condimentum. Sapien et ligula ullamcorper malesuada proin libero nunc. Facilisi etiam dignissim diam quis enim lobortis. Duis ut diam quam nulla porttitor. Non tellus orci ac auctor. Porttitor massa id neque aliquam vestibulum morbi blandit cursus. Tellus molestie nunc non blandit massa. Nam at lectus urna duis convallis convallis tellus. Tristique sollicitudin nibh sit amet commodo. Scelerisque felis imperdiet proin fermentum leo vel orci. Tellus rutrum tellus pellentesque eu tincidunt tortor aliquam nulla. Sit amet nisl purus in mollis nunc sed. Aliquam purus sit amet luctus venenatis lectus. Sagittis purus sit amet volutpat consequat mauris nunc congue.</Text>
-            <Text style={ styles.etapes_title}>Etape 3</Text>
-            <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Convallis tellus id interdum velit laoreet. Justo eget magna fermentum iaculis eu non diam phasellus. Integer quis auctor elit sed vulputate mi sit amet mauris. Aliquet lectus proin nibh nisl condimentum. Sapien et ligula ullamcorper malesuada proin libero nunc. Facilisi etiam dignissim diam quis enim lobortis. Duis ut diam quam nulla porttitor. Non tellus orci ac auctor. Porttitor massa id neque aliquam vestibulum morbi blandit cursus. Tellus molestie nunc non blandit massa. Nam at lectus urna duis convallis convallis tellus. Tristique sollicitudin nibh sit amet commodo. Scelerisque felis imperdiet proin fermentum leo vel orci. Tellus rutrum tellus pellentesque eu tincidunt tortor aliquam nulla. Sit amet nisl purus in mollis nunc sed. Aliquam purus sit amet luctus venenatis lectus. Sagittis purus sit amet volutpat consequat mauris nunc congue.</Text>
-            <Text style={ styles.etapes_title}>Etape 4</Text>
-            <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Convallis tellus id interdum velit laoreet. Justo eget magna fermentum iaculis eu non diam phasellus. Integer quis auctor elit sed vulputate mi sit amet mauris. Aliquet lectus proin nibh nisl condimentum. Sapien et ligula ullamcorper malesuada proin libero nunc. Facilisi etiam dignissim diam quis enim lobortis. Duis ut diam quam nulla porttitor. Non tellus orci ac auctor. Porttitor massa id neque aliquam vestibulum morbi blandit cursus. Tellus molestie nunc non blandit massa. Nam at lectus urna duis convallis convallis tellus. Tristique sollicitudin nibh sit amet commodo. Scelerisque felis imperdiet proin fermentum leo vel orci. Tellus rutrum tellus pellentesque eu tincidunt tortor aliquam nulla. Sit amet nisl purus in mollis nunc sed. Aliquam purus sit amet luctus venenatis lectus. Sagittis purus sit amet volutpat consequat mauris nunc congue.</Text>
-          </View>
+            <Text>{item.strInstructions}</Text>
+            </View>
         </ScrollView>
       )
     }
@@ -232,13 +253,13 @@ class RecetteDetails extends React.Component {
   render() {
     console.log("render");
 
-    const idRecette = this.props.route.params.idRecette;
+    const item = this.props.route.params.item;
     //const idRecette = this.props.navigation.getParam(idRecette);
-    console.log("id recette"+ idRecette);
+    console.log("id recette"+ item.idMeal);
 
     return (
       <View style={styles.main_container}>
-        {this._displayRecette()}
+        {this._displayRecette(item)}
         {
           //this._displayLoading()
         }

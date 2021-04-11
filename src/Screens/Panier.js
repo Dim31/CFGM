@@ -1,8 +1,6 @@
 import {Dimensions, FlatList, StyleSheet, Text, View} from 'react-native'
 import React from 'react'
 import RecettePanier from "../Components/RecettePanier";
-import EnTete from "../Components/EnTete";
-import BarreDeNavigation from "../Components/BarreDeNavigation";
 
 
 const DATA = [
@@ -35,7 +33,6 @@ export default class Panier extends React.Component {
 
         return (
             <View>
-                <EnTete style={styles.enTete}/>
 
                 <View style={styles.listeDesProduits}>
 
@@ -71,7 +68,6 @@ export default class Panier extends React.Component {
                     </View>
                 </View>
 
-                <BarreDeNavigation/>
 
             </View>
 
