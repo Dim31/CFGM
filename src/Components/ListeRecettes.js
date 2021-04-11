@@ -43,8 +43,8 @@ export default class ListeRecettes extends React.Component {
     }
   }
 
-  _afficherDetailsRecette = (idRecette) => {
-      this.props.navigation.navigate("RecetteDetails", {idRecette: idRecette})
+  _afficherDetailsRecette = (item) => {
+      this.props.navigation.navigate("RecetteDetails", {item: item})
   }
 
   render() {

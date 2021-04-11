@@ -12,7 +12,8 @@ export default class RecetteAccueil extends React.Component {
     return (
       <View style={styles.conteneurRecette}>
       <TouchableOpacity
-        onPress = {() => afficherDetailsRecette(this.props.item.idMeal)}
+        onPress={() => afficherDetailsRecette(this.props.item)}
+        //onPress = {() => afficherDetailsRecette(this.props.item.idMeal)}
       >
         <Image style={styles.ImageRecette} source={{uri: this.props.item.strMealThumb}}/>
         <Text style={styles.TextRecette} numberOfLines={2}>{this.props.item.strMeal}</Text>

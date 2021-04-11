@@ -7,21 +7,21 @@ class ProduitLittleItem extends React.Component {
     super(props);
   }
   render() {
-    const { item, afficherDetailsProduit } = this.props
+    const { produit, afficherDetailsProduit } = this.props
     return (
       <View style = {styles.main_container}>
         <TouchableOpacity
-          onPress = {() => afficherDetailsProduit(item)}
+          onPress = {() => afficherDetailsProduit(produit)}
           style = {styles.content_container}
         >
           <View style={styles.cadre_container}>
             <View style={styles.alimentTitle_container}>
               <Image
                 style={styles.image}
-                source={{uri: 'https://www.themealdb.com/images/ingredients/'+ item.ingredient +'.png'}}
+                source={{uri: 'https://www.themealdb.com/images/ingredients/'+ produit.ingredient +'.png'}}
               />
               <Text ></Text>
-              <Text style={styles.title_text}>{item.ingredient}</Text>
+              <Text style={styles.title_text}>{produit.ingredient}</Text>
             </View>
             <Text style={styles.description_text}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
           </View>

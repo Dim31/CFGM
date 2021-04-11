@@ -94,7 +94,7 @@ class RecetteDetails extends React.Component {
       );
   };
 
-  _afficherDetailsProduit = (idProduit) => {
+  _afficherDetailsProduit = (item) => {
     this.props.navigation.navigate("ProduitDetails", {item: item})
   }
 
