@@ -1,7 +1,10 @@
 import {Dimensions, FlatList, StyleSheet, Text, View} from 'react-native'
 import React from 'react'
 import RecettePanier from "../Components/RecettePanier";
+<<<<<<< Updated upstream
 import BarreDeNavigation from "../Components/BarreDeNavigation";
+=======
+>>>>>>> Stashed changes
 
 
 const DATA = [
@@ -34,6 +37,10 @@ export default class Panier extends React.Component {
 
         return (
             <View>
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
                 <View style={styles.listeDesProduits}>
 
                     <FlatList
@@ -68,6 +75,10 @@ export default class Panier extends React.Component {
                     </View>
                 </View>
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
             </View>
 
         )

@@ -5,7 +5,6 @@ export default class RecetteAccueil extends React.Component {
 
     constructor(props) {
         super(props);
-
     }
 
 
