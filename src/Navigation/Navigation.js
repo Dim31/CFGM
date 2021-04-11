@@ -14,75 +14,100 @@ import Recette from '../Screens/Recette'
 import Produit from '../Screens/Produits'
 import Recherche from '../Screens/Recherche'
 import RecetteDetails from '../Screens/RecetteDetails'
+import Filtres from '../Components/Filtres' //Filtres
 
 import { HeaderBackButton } from '@react-navigation/stack';
-import {FlatList, StyleSheet, Text, TouchableOpacity, View, Button, Image} from 'react-native'
+import {FlatList, StyleSheet, Text, TouchableOpacity, View, Button, Image, ImageBackground, StatusBar} from 'react-native'
 import { withNavigation } from 'react-navigation';
 
-// Accueil : Les vues dont on a besoin pour la page (sous menues compris)
+import backgroundImage from '../image/Patern2_travers2.png';
+import icon_accueil from '../image/icon_accueil.png';
+import icon_toc from '../image/icon_toc.png';
+import icon_carotte from '../image/icon_carotte.png';
+import icon_rechercher from '../image/icon_rechercher.png';
+import icon_profil from '../image/icon_profil.png';
+import icon_panier from '../image/icon_panier.png';
+
+import icon_accueil_white from '../image/icon_accueil_white.png';
+import icon_toc_white from '../image/icon_toc_white.png';
+import icon_carotte_white from '../image/icon_carotte_white.png';
+import icon_rechercher_white from '../image/icon_rechercher_white.png';
+
+// Pour utiliser mode:modal que sur filtres on créer un main nav
+  // Produit :
+const ProduitMainStack = createStackNavigator();
+function ProduitMainStackScreen() {
+  return (
+    <ProduitMainStack.Navigator>
+      <ProduitMainStack.Screen name="Produit" component={Produit} options={optionsTopMenuMain} />
+      <ProduitMainStack.Screen name="Compte" component={Compte} options={optionsTopMenuSub} />
+      <ProduitMainStack.Screen name="Panier" component={Panier} options={optionsTopMenuSub} />
+    </ProduitMainStack.Navigator>
+  );
+}
+
+  // Recette :
+const RecetteMainStack = createStackNavigator();
+function RecetteMainStackScreen() {
+  return (
+    <RecetteMainStack.Navigator>
+      <RecetteMainStack.Screen name="Recette" component={Recette} options={optionsTopMenuMain} />
+      <RecetteMainStack.Screen name="Compte" component={Compte} options={optionsTopMenuSub} />
+      <RecetteMainStack.Screen name="Panier" component={Panier} options={optionsTopMenuSub} />
+      <RecetteStack.Screen name="RecetteDetails" component={RecetteDetails} options={optionsTopMenuSub} />
+    </RecetteMainStack.Navigator>
+  );
+}
+
+
+// Les vues dont on a besoin pour la page (sous menues compris)
+  // Accueil :
 const AccueilStack = createStackNavigator();
 function AccueilStackScreen() {
- return (
-   <AccueilStack.Navigator>
-      <AccueilStack.Screen
-        name="CFGM"
-        component={Accueil}
-        options={optionsTopMenu}
-      />
-      <AccueilStack.Screen name="Compte" component={Compte} />
-      <AccueilStack.Screen name="Panier" component={Panier} />
-      <RechercheStack.Screen name="RecetteDetails" component={RecetteDetails}/ >
-   </AccueilStack.Navigator>
+  return (
+      <AccueilStack.Navigator>
+      {/*screenOptions={{ cardStyle: { backgroundColor: 'transparent' }, }}*/}
+        <AccueilStack.Screen name="CFGM" component={Accueil} options={optionsTopMenuMain} />
+        <AccueilStack.Screen name="Compte" component={Compte} options={optionsTopMenuSub}/>
+        <AccueilStack.Screen name="Panier" component={Panier} options={optionsTopMenuSub} />
+        <AccueilStack.Screen name="RecetteDetails" component={RecetteDetails} options={optionsTopMenuSub}/ >
+      </AccueilStack.Navigator>
   );
 }
 
-// Panier : Les vues dont on a besoin pour la page (sous menues compris)
+  // Produit :
 const ProduitStack = createStackNavigator();
 function ProduitStackScreen() {
- return (
-   <ProduitStack.Navigator>
-      <ProduitStack.Screen
-        name="Produit"
-        component={Produit}
-        options={optionsTopMenu}
-      />
-      <AccueilStack.Screen name="Compte" component={Compte} />
-      <AccueilStack.Screen name="Panier" component={Panier} />
-   </ProduitStack.Navigator>
+  return (
+    <ProduitStack.Navigator mode="modal" >
+      <ProduitStack.Screen name="Produits" component={ProduitMainStackScreen} options={{headerShown: false}} />
+      <ProduitStack.Screen name="Filtres" component={Filtres} options={optionsTopMenuSub} />
+    </ProduitStack.Navigator>
   );
 }
 
-// Recettes : Les vues dont on a besoin pour la page (sous menues compris)
+  // Recettes :
 const RecetteStack = createStackNavigator();
 function RecetteStackScreen() {
   return (
-    <RecetteStack.Navigator>
-      <RecetteStack.Screen
-        name="Recette"
-        component={Recette}
-        options={optionsTopMenu}
-      />
-      <AccueilStack.Screen name="Compte" component={Compte} />
-      <AccueilStack.Screen name="Panier" component={Panier} />
-      <RechercheStack.Screen name="RecetteDetails" component={RecetteDetails}/ >
+    <RecetteStack.Navigator mode="modal">
+      <RecetteStack.Screen name="Recettes" component={RecetteMainStackScreen} options={{headerShown: false}} />
+      <RecetteStack.Screen name="Filtres" component={Filtres} options={optionsTopMenuSub} />
     </RecetteStack.Navigator>
   );
 }
 
-// Recherche : Les vues dont on a besoin pour la page (sous menues compris)
+  // Recherche :
 const RechercheStack = createStackNavigator();
 function RechercheStackScreen() {
   return (
-    <RechercheStack.Navigator>
-      <RechercheStack.Screen
-        name="Recherche"
-        component={Recherche}
-        options={optionsTopMenu}
-      />
-      <AccueilStack.Screen name="Compte" component={Compte} />
-      <AccueilStack.Screen name="Panier" component={Panier} />
-      <RechercheStack.Screen name="RecetteDetails" component={RecetteDetails}/ >
-    </RechercheStack.Navigator>
+      <RechercheStack.Navigator>
+        <RechercheStack.Screen name="Recherche" component={Recherche} options={optionsTopMenuMain} />
+        <RechercheStack.Screen name="Compte" component={Compte} options={optionsTopMenuSub} />
+        <RechercheStack.Screen name="Panier" component={Panier} options={optionsTopMenuSub} />
+        <RechercheStack.Screen name="RecetteDetails" component={RecetteDetails} options={optionsTopMenuSub} />
+      </RechercheStack.Navigator>
+
   );
 }
 
@@ -98,26 +123,27 @@ export default function App() {
            let iconName;
            if (route.name === 'Accueil') {
               iconName = focused
-              ? 'home-outline'
-              : 'home-outline';
+              ? icon_accueil_white
+              : icon_accueil
             } else if (route.name === 'Recettes') {
               iconName = focused
-              ? 'home-outline'
-              : 'home-outline'; //basket-outline
+              ? icon_toc_white
+              : icon_toc //basket-outline
             } else if (route.name === 'Produits') {
               iconName = focused
-              ? 'home-outline'
-              : 'home-outline'; //person-outline
+              ? icon_carotte_white
+              : icon_carotte //person-outline
             } else if (route.name === 'Recherche') {
               iconName = focused
-              ? 'search-outline'
-              : 'search-outline';
+              ? icon_rechercher_white
+              : icon_rechercher
             }
-            return <Ionicons name={iconName} size={size} color={color}/>;
+            return <Image style={{ width: size, height: size }} source={iconName} />
+            //<Ionicons name={iconName} size={size} color={color}/>;
           },
         })}
         tabBarOptions={{
-          activeTintColor: 'tomato',
+          activeTintColor: 'white',
           inactiveTintColor: 'gray',
           style: {
             backgroundColor: '#293845',
@@ -134,7 +160,10 @@ export default function App() {
 
 // Options Top Menu
 import mami from "../../assets/mami2.png"
-let optionsTopMenu = ({ navigation, route }) => ({
+let optionsTopMenuMain = ({ navigation, route }) => ({
+  cardStyle: {
+    //backgroundColor: "blue",
+  },
   headerStyle: {
     backgroundColor: '#F1D397',
     shadowColor: "#000",
@@ -167,7 +196,7 @@ let optionsTopMenu = ({ navigation, route }) => ({
         >
           <Image
             style={styles.image}
-            source={{uri: 'https://image.flaticon.com/icons/png/128/1077/1077063.png'}}
+            source={icon_profil}
           />
       </TouchableOpacity>
       <TouchableOpacity
@@ -176,12 +205,35 @@ let optionsTopMenu = ({ navigation, route }) => ({
       >
         <Image
           style={styles.image}
-          source={{uri: 'https://image.flaticon.com/icons/png/512/833/833314.png'}}
+          source={icon_panier}
         />
     </TouchableOpacity>
     </View>
-      ),
-    });
+  ),
+});
+
+let optionsTopMenuSub = ({ navigation, route }) => ({
+  cardStyle: {
+    //backgroundColor: "blue",
+  },
+  headerStyle: {
+    backgroundColor: '#F1D397',
+    shadowColor: "#000",
+    shadowOffset: {
+    	width: 0,
+    	height: 8,
+    },
+    shadowOpacity: 0.20,
+    shadowRadius: 5,
+    elevation: 14,
+  },
+});
+
+
+let optionsTopMenuHidden = ({ navigation, route }) => ({
+  headerShown: false,
+});
+
 
 // Styles
 const widthAddIcons = 30;
@@ -200,12 +252,16 @@ const styles = StyleSheet.create({
     marginLeft: 20,
 
   },
-    mainConteneur: {
-        flexDirection: 'column',
-        flex: 1,
-    },
-
-    BarreDeNavigation: {
-        backgroundColor: '#000000',
-    },
+  mainConteneur: {
+    flexDirection: 'column',
+    flex: 1,
+  },
+  BarreDeNavigation: {
+    backgroundColor: '#000000',
+  },
+  backgroudImage: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+  },
 })

@@ -1,93 +1,87 @@
-import React from 'react'
-import { StyleSheet, View, Text, Image, TouchableOpacity , Button, Dimensions} from 'react-native'
+import React, { Component } from 'react';
+import { Text, View, StyleSheet, Image, Dimensions } from 'react-native';
 
 
-class ProduitItem extends React.Component {
+class ProduitItem extends Component {
   render() {
-    const { produit, afficherDetailsProduit } = this.props
-    console.log("L id du recette est : "+produit.id);
-    console.log("L key du recette est : "+produit.key);
+    const produit = this.props.produit;
     return (
-      <View style = {styles.main_container}>
-        <TouchableOpacity
-
-        onPress = {() => afficherDetailsProduit(produit.id)}
-        style = {styles.content_container}
-        >
-          <View style={styles.cadre_container}>
-            <View style={styles.alimentTitle_container}>
-
-              <Image
-                style={styles.image}
-                source={{uri: 'https://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c238.png'}}
-              />
-              <Text ></Text>
-              <Text style={styles.title_text}>Produit {produit.id}</Text>
-            </View>
-            <Text style={styles.description_text}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
-          </View>
-        </TouchableOpacity>
+      <View style={styles.conteneur}>
+        <View>
+          <Text style={styles.titre}>{produit.titre}</Text>
+          <Text style={styles.producteur}>{produit.producteur}</Text>
+        </View>
+        <View style={styles.image_Container}>
+          <Image
+            source={{uri: produit.image}}
+            style={styles.imageProduit}
+          />
+        </View>
+        <View style={styles.icon_Container}>
+          <Image
+            source={{uri: 'https://image.flaticon.com/icons/png/512/126/126510.png'}}
+            style={styles.icon}
+          />
+          <Image
+            source={{uri: 'https://img.icons8.com/ios/452/hearts--v1.png'}}
+            style={styles.icon}
+          />
+        </View>
       </View>
-    )
+    );
   }
 }
 
-const widthAddIcons = 33;
+var allWidth = Dimensions.get('window').width; //full width
 const styles = StyleSheet.create({
-  alimentTitle_container: {
-    flexDirection: 'row',
-    alignItems: 'center'
+  conteneur: {
+    width: allWidth * 45/100,
+    backgroundColor: "#f1d397",
+    borderRadius: 25,
+    margin: 10,
+    padding: 10,
+    // Shadow
+    shadowColor: "#000",
+    shadowOffset: {
+    	width: 0,
+    	height: 0,
+    },
+    shadowOpacity: 0.130,
+    shadowRadius: 5,
+    elevation: 9,
   },
-
-
-  main_container: {
-    justifyContent: 'center',
+  titre: {
+    fontSize: 18,
+    flexWrap: 'wrap',
+    textAlign: "center",
+    marginBottom: 2,
+  },
+  producteur: {
+    fontSize: 10,
+    flexWrap: 'wrap',
+    textAlign: "center",
+    marginBottom: 15,
+  },
+  image_Container:{
     alignItems: 'center',
-    margin: 3,
-    marginBottom: 5
   },
-  content_container: {
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  cadre_container: {
-    //borderWidth: 1,
-    padding: 10
-  },
-  image: {
-    width: Dimensions.get('window').width/2 * 0.3 ,
-    height: Dimensions.get('window').width/2 * 0.3,
-    borderRadius: Dimensions.get('window').width/2 * 0.2/ 2,
-  },
+  imageProduit: {
+    width: 95,
+    height: 95,
+    borderRadius: 100,
+    marginBottom: 5,
 
-
-  header_container: {
+    //borderWidth: 1
   },
-  title_text: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginTop: 20,
-    marginBottom: 10
-  },
-
-  description_container: {
-  },
-  description_text: {
-    fontStyle: 'italic',
-    color: '#666666',
-    fontSize: 12,
-    textAlign: 'justify',
-    marginTop: 2,
-  },
-
-
-  ajouts_container: {
+  icon_Container:{
     flexDirection: 'row',
-    paddingLeft: 10,
-    paddingRight: 10,
-    marginTop: -10
+    justifyContent:'space-between',
   },
+  icon:{
+    width: 33,
+    height: 33,
+    margin: 8,
+  }
 })
 
-export default ProduitItem
+export default ProduitItem;

@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { View,StyleSheet,ScrollView,FlatList} from 'react-native';
-import ItemProduit from '../Components/ItemProduit';
+import { View, StyleSheet, ScrollView, FlatList, ImageBackground} from 'react-native';
+import ProduitItem from '../Components/ProduitItem';
 import { SearchBar, Button } from 'react-native-elements';
-
+import backgroundImage from "../image/Patern2_travers2.png";
+import Icon from 'react-native-vector-icons/Octicons';
 
 const data = [
-  {key: 'A', titre: 'Nouilles',producteur:'moi le boss',image:'https://cdn.pixabay.com/photo/2018/12/24/19/28/japanese-noodles-3893449_960_720.png'},
-  {key: 'B', titre: 'Sushi',producteur:'moi le boss',image:'https://lh3.googleusercontent.com/proxy/htRguiMuB1HV1SGwhAw6gn-AS4IHkXEy-DGzA3Z8Lu3SNHjTuNBBBmyfVORbOd_MqP32fbdu8kUJn5bw9l4jAqugiT-1YbjrIs9PxSW_5M5PqJPWk24xj4A1BMA'},
-  {key: 'C', titre: 'chien chaud',producteur:'moi le boss',image:'https://images.emojiterra.com/google/android-pie/512px/1f32d.png'},
-  {key: 'D', titre: 'fat burger',producteur:'moi le boss',image:'https://www.fatburgercanada.com/wp-content/uploads/2015/07/king-burger-541x633.png'},
+  {key: 'A', titre: 'Tomate',producteur:'Nom du producteur',image:'https://img.cuisineaz.com/680x357/2018-04-14/i139355-tomates.jpeg'},
+  {key: 'B', titre: 'Fraise',producteur:'Nom du producteur',image:'https://grandest.mutualite.fr/content/uploads/sites/45/2020/05/Cover-FRAISES-730x480.jpg'},
+  {key: 'C', titre: 'Carotte',producteur:'Nom du producteur',image:'https://www.semaille.com/9016-large_default/carotte-nantaise-2.jpg'},
+  {key: 'D', titre: 'Oeuf',producteur:'Nom du producteur',image:'https://cdn.bioalaune.com/img/article/thumb/900x500/29095-6_bonnes_raisons_de_manger_des_oeufs_regulierement.jpg'},
 ]
 
 class Produit extends React.Component {
@@ -24,68 +25,83 @@ class Produit extends React.Component {
     for(let i = 0;i < 10; i++){
       produits.push(
         <View key = {i}>
-          <ItemProduit/>
+          <ProduitItem/>
         </View>
       )
     }
     return(
-      <View style={{marginTop:20}}>
+      <ImageBackground source={backgroundImage} style={styles.backgroudImage}>
         <ScrollView>
-          <View style={styles.top}>
+          <View style={styles.search_container}>
             <SearchBar
-              placeholder="Recherchez..."
+              containerStyle={styles.searchBar_container}
+              inputContainerStyle={styles.searchBar_input}
+              placeholder="Tomate"
+              inputStyle={{color:'#202c39'}}
               onChangeText={this.updateState}
               value={search}
-              containerStyle={styles.searchBarBox}
-              inputContainerStyle={styles.searchBar}
             />
-            <Button
-              title="Filtres"
-              type="outline"
-              buttonStyle={styles.bouton}
-            />
-
+            <Icon.Button
+              style={styles.search_button}
+              name="settings"
+              color="#f1d397"
+              backgroundColor="#202c39"
+              borderRadius="50"
+              onPress = {() => this.props.navigation.navigate("Filtres")}>
+              Filtres
+            </Icon.Button>
           </View>
-          <View style={styles.container}>
-            <FlatList
-              data={data}
-              renderItem={({item})=> <ItemProduit produit={item}/>}
-              numColumns={2}
-            />
-          </View>
+          <FlatList
+            data={data}
+            renderItem={({item})=> <ProduitItem produit={item}/>}
+            numColumns={2}
+          />
         </ScrollView>
-      </View>
+      </ImageBackground>
 
     );
   }
 }
 
 const styles = StyleSheet.create({
-  top:{
+  backgroudImage: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+  },
+  search_container:{
     flexDirection: 'row',
     alignItems:'center',
-    justifyContent:'space-around',
-    padding:10,
+    justifyContent:'space-between',
+    marginLeft: 10,
+    marginRight: 10,
+    margin: 20,
   },
-  container: {
-      alignItems:'center',
-  },
-  searchBarBox: {
-    margin:5,
-    width:200,
+  searchBar_container: {
+    flex:1,
     backgroundColor:'transparent',
     borderTopWidth: 0,
     borderBottomWidth: 0,
+    // Shadow
+    shadowColor: "#000",
+    shadowOffset: {
+    	width: 0,
+    	height: 0,
+    },
+    shadowOpacity: 0.130,
+    shadowRadius: 5,
+    elevation: 9,
   },
-  searchBar:{
+  searchBar_input:{
     backgroundColor:'white',
-    borderWidth:1,
-    borderRadius:30,
+    width: "100%",
+    borderRadius:50,
+    height: 45,
   },
-  bouton:{
-    paddingHorizontal:30,
-    borderRadius:20,
-  }
+  search_button:{
+    width: "100%",
+    height: 45,
+  },
 })
 
 export default Produit;

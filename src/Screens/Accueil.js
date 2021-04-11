@@ -1,7 +1,7 @@
 import {FlatList, StyleSheet, Text, TouchableOpacity, View, StatusBar, Icon, Button, Image, ImageBackground, ScrollView} from 'react-native'
 import ListeRecettes from "../Components/ListeRecettes";
 import React from 'react'
-import pattern2_travers from "../image/Patern2_travers2.png";
+import backgroundImage from "../image/Patern2_travers2.png";
 
 const DATA = [
     {
@@ -24,15 +24,15 @@ const DATA = [
 export default class Accueil extends React.Component {
   render() {
     return (
-      <ImageBackground source={pattern2_travers} style={styles.backgroudImage}>
+      <ImageBackground source={backgroundImage} style={styles.backgroudImage}>
+        <StatusBar
+          animated={true}
+          backgroundColor="white"
+          barStyle='dark-content'
+          showHideTransition='fade'
+          hidden= {false}
+        />
         <ScrollView style={styles.mainConteneur}>
-            <StatusBar
-              animated={true}
-              backgroundColor="white"
-              barStyle='dark-content'
-              showHideTransition='fade'
-              hidden= {false}
-            />
             <Text style={styles.phraseHello}> Au fourneau les enfants !</Text>
             <FlatList
               style={styles.flatListeRecette}

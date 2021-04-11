@@ -11,7 +11,7 @@ LogBox.ignoreLogs([
 import {Video} from 'expo-av'
 import { WebView } from 'react-native-webview';
 
-import ProduitItem from '../Components/ProduitItem'
+import ProduitLittleItem from '../Components/ProduitLittleItem'
 
 const numColumns = 2;
 const formatData = (data, numColumns) => {
@@ -64,7 +64,7 @@ class RecetteDetails extends React.Component {
       }
       return (
           <View style={styles.item} >
-              <ProduitItem produit={item} afficherDetailsProduit={this._afficherDetailsProduit} />
+              <ProduitLittleItem produit={item} afficherDetailsProduit={this._afficherDetailsProduit} />
           </View>
       );
   };
