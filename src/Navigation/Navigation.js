@@ -81,7 +81,7 @@ function ProduitStackScreen() {
   return (
     <ProduitStack.Navigator mode="modal" >
       <ProduitStack.Screen name="Produits" component={ProduitMainStackScreen} options={{headerShown: false}} />
-      <ProduitStack.Screen name="Filtres" component={Filtres} options={optionsTopMenuSub} />
+      <ProduitStack.Screen name="Filtres" component={Filtres} options={optionsTopMenuFiltre} transparent={true}/>
     </ProduitStack.Navigator>
   );
 }
@@ -92,7 +92,7 @@ function RecetteStackScreen() {
   return (
     <RecetteStack.Navigator mode="modal">
       <RecetteStack.Screen name="Recettes" component={RecetteMainStackScreen} options={{headerShown: false}} />
-      <RecetteStack.Screen name="Filtres" component={Filtres} options={optionsTopMenuSub} />
+      <RecetteStack.Screen name="Filtres" component={Filtres} options={optionsTopMenuFiltre} transparent={true} />
     </RecetteStack.Navigator>
   );
 }
@@ -212,12 +212,10 @@ let optionsTopMenuMain = ({ navigation, route }) => ({
   ),
 });
 
+// Options menus
 let optionsTopMenuSub = ({ navigation, route }) => ({
-  cardStyle: {
-    //backgroundColor: "blue",
-  },
   headerStyle: {
-    backgroundColor: '#F1D397',
+    backgroundColor: '#F1D397', //#243846
     shadowColor: "#000",
     shadowOffset: {
     	width: 0,
@@ -227,6 +225,29 @@ let optionsTopMenuSub = ({ navigation, route }) => ({
     shadowRadius: 5,
     elevation: 14,
   },
+
+});
+
+let optionsTopMenuFiltre = ({ navigation, route }) => ({
+  //headerShown: false,
+  cardStyle: {
+    //backgroundColor: "transparent",
+  },
+  headerTintColor: "#F1D397",
+  headerStyle: {
+    backgroundColor: '#243846', //bleu #243846 beige #F1D397
+    shadowColor: "#000",
+    shadowOffset: {
+    	width: 0,
+    	height: 8,
+    },
+    shadowOpacity: 0.20,
+    shadowRadius: 5,
+    elevation: 14,
+  },
+  headerRight: () => (
+    <Button onPress={() => alert('TODO : envoyer les options')} title="Valider" />
+  ),
 });
 
 

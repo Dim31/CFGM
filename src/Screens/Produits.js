@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, ScrollView, FlatList, ImageBackground} from 'react-native';
+import { View, StyleSheet, ScrollView, FlatList, ImageBackground, TouchableOpacity, Text} from 'react-native';
 import ProduitItem from '../Components/ProduitItem';
 import { SearchBar, Button } from 'react-native-elements';
 import backgroundImage from "../image/Patern2_travers2.png";
@@ -41,15 +41,21 @@ class Produit extends React.Component {
               onChangeText={this.updateState}
               value={search}
             />
-            <Icon.Button
-              style={styles.search_button}
-              name="settings"
-              color="#f1d397"
-              backgroundColor="#202c39"
-              borderRadius="50"
-              onPress = {() => this.props.navigation.navigate("Filtres")}>
-              Filtres
-            </Icon.Button>
+            <TouchableOpacity
+              onPress = {() => this.props.navigation.navigate("Filtres")}
+              style={{
+                alignItems:'center',
+                justifyContent:'space-evenly',
+                flexDirection: 'row',
+                width:100,
+                height:45,
+                backgroundColor:'#202c39',
+                borderRadius:50,
+              }}
+            >
+              <Icon name="settings"  size={20} color="#f1d397" />
+              <Text style={{color: '#f1d397', fontWeight: 'bold'}}>Filtres</Text>
+            </TouchableOpacity>
           </View>
           <FlatList
             data={data}
