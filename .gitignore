@@ -1,6 +1,9 @@
 node_modules/**/*
+<<<<<<< Updated upstream
 package.json
 package-lock.json
+=======
+>>>>>>> Stashed changes
 .expo/*
 npm-debug.*
 *.jks
