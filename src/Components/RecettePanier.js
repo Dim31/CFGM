@@ -1,97 +1,82 @@
 import React from 'react'
-import {Dimensions, Image, StyleSheet, Text, View} from 'react-native'
+import {Dimensions, Image, StyleSheet, Text, View, TouchableOpacity} from 'react-native'
+
+// Icones
+import icon_corbeille_orange from '../image/icon_corbeille_orange.png';
+import icon_enlever_orange from '../image/icon_ajout_orange.png';
+import icon_unchecked_orange from '../image/icon_unchecked_orange.png';
+import icon_ajout_orange from '../image/icon_ajout_orange.png';
 
 
 export default class RecettePanier extends React.Component {
+  render() {
+    return (
+      <View style={styles.main_conatiner}>
+        <Image style={styles.imageRecette} source={{uri: this.props.imgurl}}/>
+        <View style={styles.detailsRecette_container}>
+          <Text style={styles.detailsRecette_titre}>{this.props.titre}</Text>
+          <Text style={styles.detailsRecette_prix}>{this.props.prix}€</Text>
+        </View>
 
-    render() {
-        return (
-            <View style={styles.toutDetailsRecettePanier}>
-
-                <Image style={styles.ImageRecette} source={{uri: this.props.imgurl}}/>
-
-                <View style={styles.flex2}>
-                    <View style={styles.conteneurHaut}>
-
-                        <View style={styles.detailRecette}>
-                            <Text> {this.props.titre} </Text>
-                            <Text> {this.props.prix}  </Text>
-                        </View>
-
-
-
-                        <View style={styles.formQuantite}>
-                            <View style={styles.buttonModificationQuantite}>
-                                <Text>-</Text>
-                            </View>
-                            <Text> {this.props.quantite} </Text>
-                            <View style={styles.buttonModificationQuantite}>
-                                <Text>+</Text>
-                            </View>
-                        </View>
-
-                        <Text> {this.props.prix}  </Text>
-
-                        <Image style={styles.logoPoubelle}
-                               source={{uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRj0-YQyr1vfHUPz0j3DgiocNWVE3Eak6lCyx9ujBLn_M62-LeF9EFVLzDO4A&usqp=CAc'}}/>
-
-                    </View>
-                    <View style={styles.conteneurBas}>
-
-                        <Text> Modifier les produits </Text>
-                        <Image style={styles.logoEtendre}
-                               source={{uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr_ejEOaJqq2YQcpxpDipoitjDSV4nfJZHiA&usqp=CAU'}}/>
-                    </View>
-                </View>
-
-            </View>
-        )
-    }
-
-
+        <View style={styles.actionRecette_container}>
+          <TouchableOpacity>
+            <Image style={styles.icon} source={icon_enlever_orange} />
+          </TouchableOpacity>
+          <Image style={styles.iconCount} source={icon_unchecked_orange} />
+          {/*<Text> {this.props.quantite} </Text>*/}
+          <TouchableOpacity>
+            <Image style={styles.icon} source={icon_ajout_orange} />
+          </TouchableOpacity>
+          <Text>{this.props.prix}€</Text>
+          <TouchableOpacity>
+            <Image style={styles.icon} source={icon_corbeille_orange} />
+          </TouchableOpacity>
+        </View>
+      </View>
+    )
+  }
 }
 
+const widthAddIcons = 15;
 var allWidth = Dimensions.get('window').width; //full width
-
 const styles = StyleSheet.create({
-    toutDetailsRecettePanier: {
-        flexDirection: 'row',
-        width: allWidth / 100 * 90,
-        marginTop: 50
-    },
-    ImageRecette: {
-        flex: 1,
-        height: 150,
-        width: 150,
-    },
-    logoEtendre: {
-        height: 25,
-        width: 25,
-        alignSelf: 'center'
-    },
-    flex2: {
-        flex: 2,
-    },
-    conteneurHaut: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-    },
-    formQuantite: {
-      flexDirection: 'row',
-    },
-    conteneurBas: {
-        alignSelf: 'center'
-    },
+  main_conatiner: {
+    flexDirection: 'row',
+    padding: 15,
+  },
+  imageRecette: {
+    height: allWidth*22/100,
+    width: allWidth*22/100,
+  },
+  
+  detailsRecette_container: {
+    flex: 1,
+    margin: 5,
+  },
+  detailsRecette_titre: {
+    fontSize: 13,
+    marginBottom: 5,
+  },
+  detailsRecette_prix: {
+    fontSize: 10,
+    fontWeight: 'bold',
+  },
 
-    buttonModificationQuantite: {
-        borderWidth: 1,
-        borderColor: '#000000',
-        width: 20,
-        height: 20,
-    },
-    logoPoubelle: {
-        height: 25,
-        width: 25
-    }
+  actionRecette_container: {
+    flex: 2,
+    flexDirection: 'row',
+    justifyContent: "space-evenly",
+    alignItems: 'center',
+
+  },
+
+
+  icon: {
+    height: widthAddIcons,
+    width: widthAddIcons
+  },
+  iconCount: {
+    height: widthAddIcons * 200/100,
+    width: widthAddIcons * 200/100,
+  },
 })
