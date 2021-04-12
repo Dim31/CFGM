@@ -8,10 +8,10 @@ import InputSpinner from "react-native-input-spinner";
 import {CheckBox} from "react-native-elements";
 
 
-import icon_plus from '../image/icon_plus.png';
-import icon_moins from '../image/icon_moins.png';
-import icon_checked from '../image/icon_checked.png';
-import icon_unchecked from '../image/icon_unchecked.png';
+import icon_plus from '../image/icon_plus_orange.png';
+import icon_moins from '../image/icon_moins_orange.png';
+import icon_checked from '../image/icon_checked_orange.png';
+import icon_unchecked from '../image/icon_unchecked_orange.png';
 
 
 const optionsCuisson = [
@@ -30,7 +30,7 @@ const optionsDifficulte = [
 export default class Filtres extends React.Component {
 
   state = {
-    value: 0,
+    value: 20,
     checkedExpress: false,
     checkedVege: false,
     checkedHealthy: false,
