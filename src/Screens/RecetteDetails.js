@@ -1,6 +1,10 @@
 import React from 'react'
 import { StyleSheet,VirtualizedList, View, Text, ActivityIndicator, ScrollView, Image, TouchableOpacity , FlatList} from 'react-native'
 
+// Icones
+import icon_coeur_orange from '../image/icon_coeur_orange.png';
+import icon_panier_orange from '../image/icon_panier_orange.png';
+
 // To Remove log
 import { LogBox } from 'react-native'
 LogBox.ignoreLogs([
@@ -124,14 +128,14 @@ class RecetteDetails extends React.Component {
               <TouchableOpacity>
                 <Image
                   style={styles.imageCoeur}
-                  source={{uri: 'https://img.icons8.com/ios/452/hearts--v1.png'}}
+                  source={icon_coeur_orange}
                 />
               </TouchableOpacity>
               <Text style={styles.text_text}></Text>
               <TouchableOpacity>
                 <Image
                   style={styles.imagePanier}
-                  source={{uri: 'https://image.flaticon.com/icons/png/512/126/126510.png'}}
+                  source={icon_panier_orange}
                 />
               </TouchableOpacity>
             </View>
@@ -199,7 +203,9 @@ class RecetteDetails extends React.Component {
 
           <FlatList
               data={this._getAllIngredient(item)}
-              style={styles.produitsFlatList_container}
+              //style={styles.produitsFlatList_container}
+              contentContainerStyle={styles.produitsFlatList_container}
+              columnWrapperStyle={{justifyContent: 'space-between'}}
               numColumns= {numColumns}
               keyExtractor={(item) => item.id}
               renderItem={({item}) => (
@@ -385,13 +391,11 @@ const styles = StyleSheet.create({
 
   produitsFlatList_container: {
       flex: 1,
+      margin: 20,
+
   },
   item: {
-      alignItems: 'center',
-      justifyContent: 'center',
-      flex: 1,
-      marginTop: 20,
-      //height: Dimensions.get('window').width / numColumns, // approximate a square *
+
   },
 
 

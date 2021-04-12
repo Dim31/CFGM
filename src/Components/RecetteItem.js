@@ -1,18 +1,22 @@
 import React from 'react'
 import {Dimensions, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 
+import icon_coeur_orange from '../image/icon_coeur_orange.png';
+import icon_panier_orange from '../image/icon_panier_orange.png';
+import icon_ajout_orange from '../image/icon_ajout_orange.png';
+
+
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
 }
 
-class RecetteItem extends React.Component {
 
+class RecetteItem extends React.Component {
     constructor(props) {
         super(props);
     }
-
     render() {
         const {item, afficherDetailsRecette} = this.props
         // console.log("L id du recette est : "+item.idMeal);
@@ -26,12 +30,12 @@ class RecetteItem extends React.Component {
                 >
                     <View style={styles.cadre_container}>
                         <View style={styles.header_container}>
-                            <Text style={styles.title_text}>{item.strMeal}</Text>
+                            <Text style={styles.title_text} numberOfLines={1}>{item.strMeal}</Text>
                             <Text style={styles.price_text}>{getRandomInt(8, 60)} €</Text>
                         </View>
                         <View style={styles.description_container}>
                             <Text style={styles.description_text}
-                                  numberOfLines={2}>{item.strTags}, {item.strArea} </Text>
+                                  numberOfLines={1}>[{item.strArea}] {item.strTags}</Text>
                             <Text style={styles.plus_text}>En savoir plus</Text>
                         </View>
                     </View>
@@ -42,17 +46,25 @@ class RecetteItem extends React.Component {
                 </TouchableOpacity>
 
                 <View style={styles.ajouts_container}>
-                    <TouchableOpacity onPress={() => this._ajoutRecettePanier()}>
+                    <TouchableOpacity onPress={() => this._ajoutRecettePanier()} style={styles.imageCoeur_container}>
+                        <Image
+                            style={styles.imageAjout}
+                            source={icon_ajout_orange}
+                        /><Text> </Text>
                         <Image
                             style={styles.imageCoeur}
-                            source={{uri: 'https://img.icons8.com/ios/452/hearts--v1.png'}}
+                            source={icon_coeur_orange}
                         />
                     </TouchableOpacity>
                     <Text style={styles.text_text}></Text>
-                    <TouchableOpacity onPress={() => this._ajoutRecetteFavoris()}>
+                    <TouchableOpacity onPress={() => this._ajoutRecetteFavoris()} style={styles.imagePanier_container}>
+                        <Image
+                            style={styles.imageAjout}
+                            source={icon_ajout_orange}
+                        /><Text> </Text>
                         <Image
                             style={styles.imagePanier}
-                            source={{uri: 'https://image.flaticon.com/icons/png/512/126/126510.png'}}
+                            source={icon_panier_orange}
                         />
                     </TouchableOpacity>
                 </View>
@@ -63,7 +75,7 @@ class RecetteItem extends React.Component {
 }
 
 var allWidth = Dimensions.get('window').width; //full width
-const widthAddIcons = 33;
+const widthAddIcons = 28;
 const styles = StyleSheet.create({
     main_container: {
         // justifyContent: 'center',
@@ -147,15 +159,27 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         paddingRight: 10,
         padding: 15,
-        marginTop: -10
+        marginTop: -5,
+    },
+    imagePanier_container: {
+      flexDirection: 'row',
+      alignItems: 'center',
     },
     imagePanier: {
         width: widthAddIcons,
         height: widthAddIcons,
     },
+    imageCoeur_container: {
+      flexDirection: 'row',
+      alignItems: 'center'
+    },
     imageCoeur: {
         width: widthAddIcons,
         height: widthAddIcons,
+    },
+    imageAjout: {
+      width: widthAddIcons * 50/100,
+      height: widthAddIcons * 50/100,
     },
     text_text: {
         flex: 1
