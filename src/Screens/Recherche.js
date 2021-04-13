@@ -1,10 +1,11 @@
 import React, {useState} from 'react'
-import { StyleSheet, View, Button, TextInput, FlatList, Text, ActivityIndicator, Dimensions, Picker, Animated,SafeAreaView, StatusBar, TouchableOpacity, Image } from 'react-native'
+import { StyleSheet, View, TextInput, FlatList, Text, ActivityIndicator, Dimensions, Picker, Animated,SafeAreaView, StatusBar, TouchableOpacity, Image, ScrollView, ImageBackground } from 'react-native'
 import RecetteItem from '../Components/RecetteItem'
 import Filtres from "../Components/Filtres";
-
+import backgroundImage from "../image/Patern2_travers2.png";
 import NavigationRecherche from '../Navigation/NavigationRecherche'
-
+import { SearchBar, Button } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/Octicons';
 
 const formatData = (data, numColumns) => {
     const numberOfFullRows = Math.floor(data.length / numColumns);
@@ -26,6 +27,12 @@ const translateY = diffClamp.interpolate({
 })
 
 class Recherche extends React.Component {
+  state = {
+    search: '',
+  };
+  updateState = (search) => {
+    this.setState({search});
+  };
     constructor(props) {
         super(props)
         this.page = 0
@@ -69,31 +76,54 @@ class Recherche extends React.Component {
 
 
     render() {
+      const {search} = this.state;
+      var produits = [];
+      const {meals, isLoading} = this.state;
         return (
-            <View style={styles.main_container}>
-                <Animated.View
-                style={{
-                  transform:[
-                    {translateY:translateY }
-                  ],
-                  elevation:4,
-                  zIndex:100,
-                }}
-                >
-                <View style={styles.search_container} >
-                    <TextInput onSubmitEditing={() => this._searchRecette()} onChangeText={(text) => this._searchTextInputChanged(text)}  style={[styles.textinput, { backgroundColor: 'lightgrey'}]} placeholder='Rechercher'/>
-                    <Button
-                        style={styles.buttonFilter}
-                        title="Filtres"
-                        color="#0c506a"
-                        accessibilityLabel="Learn more about this purple button"
-                    />
-                </View>
+          <ImageBackground source={backgroundImage} style={styles.backgroudImage}>
+          <ScrollView >
+          <View style={styles.search_container}>
+            <SearchBar
+              containerStyle={styles.searchBar_container}
+              inputContainerStyle={styles.searchBar_input}
+              placeholder="Tarte aux fraises"
+              inputStyle={{color:'#202c39'}}
+              onChangeText={this.updateState}
+              value={search}
+            />
+            <TouchableOpacity
+              onPress = {() => this.props.navigation.navigate("Filtres")}
+              style={{
+                alignItems:'center',
+                justifyContent:'space-evenly',
+                flexDirection: 'row',
+                width:100,
+                height:45,
+                backgroundColor:'#202c39',
+                borderRadius:50,
+              }}
+            >
+              <Icon name="settings"  size={20} color="#f1d397" />
+              <Text style={{color: '#f1d397', fontWeight: 'bold'}}>Filtres</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.main_container} >
+            {isLoading ? <ActivityIndicator/> : (
+              <FlatList
+                style={styles.flatList_container}
+                numColumns={numColumns}
+                data={meals}
+                keyExtractor={(item) => item.idMeal}
+                renderItem={({item}) => (
+                  this.renderItem(item)
+                )}
+              />
+            )}
+          </View>
 
-                </Animated.View>
-
-                <NavigationRecherche/>
-            </View>
+                {/*<NavigationRecherche/>*/}
+            </ScrollView>
+          </ImageBackground>
         )
     }
 }
@@ -101,41 +131,48 @@ class Recherche extends React.Component {
 const widthAddIcons = 30;
 const styles = StyleSheet.create({
   main_container: {
-    flex: 1
+    flex: 1,
+  },
+  backgroudImage: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
   },
   search_container:{
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingLeft: 20,
-    paddingRight: 20,
-
-    paddingBottom: 10,
-    paddingTop: 20,
-    // borderBottomWidth: 1,
-    borderTopWidth: 2,
-    borderColor: '#817975',
-    backgroundColor: '#d4ccc0',
-    alignItems: 'center'
+    alignItems:'center',
+    justifyContent:'space-between',
+    marginLeft: 10,
+    marginRight: 10,
+    margin: 20,
   },
-    textinput: {
-        marginLeft: 5,
-        marginRight: 5,
-        height: 45,
-        borderColor: '#000000',
-        borderWidth: 1,
-        paddingLeft: 5,
-        flex: 0.8,
-        borderRadius: 20
+  searchBar_container: {
+    flex:1,
+    backgroundColor:'transparent',
+    borderTopWidth: 0,
+    borderBottomWidth: 0,
+    // Shadow
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 0,
     },
-    buttonFilter: {
-      alignItems: "center",
-      backgroundColor: "#293845",
-      paddingVertical:10,
-      paddingHorizontal:20,
-      borderRadius: 50,
-      borderWidth: 1,
-      width: 100,
-    },
+    shadowOpacity: 0.130,
+    shadowRadius: 5,
+    elevation: 9,
+  },
+  searchBar_input:{
+    backgroundColor:'white',
+    width: "100%",
+    borderRadius:50,
+    height: 45,
+  },
+  search_button:{
+    width: "100%",
+    height: 45,
+  },
+
+
 
     flatList_container: {
         flex: 1,
